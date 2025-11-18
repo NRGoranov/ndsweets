@@ -1,0 +1,121 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+export function EmailPopup() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    // Check if user has already seen the popup (stored in localStorage)
+    const hasSeenPopup = localStorage.getItem("ndsweets-email-popup-seen");
+    if (!hasSeenPopup) {
+      // Show popup after 10 seconds
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    localStorage.setItem("ndsweets-email-popup-seen", "true");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    // Store subscription in localStorage for demo
+    const subscriptions = JSON.parse(localStorage.getItem("ndsweets-newsletter") || "[]");
+    if (!subscriptions.includes(email)) {
+      subscriptions.push(email);
+      localStorage.setItem("ndsweets-newsletter", JSON.stringify(subscriptions));
+    }
+
+    toast.success("You're subscribed!", {
+      description: "Enjoy 15% off your first order. Check your email for the discount code. Newsletter is completely free!",
+      duration: 5000,
+    });
+
+    setEmail("");
+    setIsSubmitting(false);
+    handleClose();
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <>
+      {/* Overlay */}
+      <div
+        className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"
+        onClick={handleClose}
+      />
+      {/* Popup */}
+      <div className="fixed left-1/2 top-1/2 z-[101] w-[90%] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-primary/10 bg-white p-6 shadow-2xl sm:p-8">
+        <button
+          onClick={handleClose}
+          className="absolute right-4 top-4 rounded-full p-1 text-primary/60 transition hover:bg-primary/10 hover:text-primary"
+          aria-label="Close popup"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <div className="text-center">
+          <h2 className="font-display text-2xl text-primary sm:text-3xl">
+            Welcome to ndsweets!
+          </h2>
+          <p className="mt-3 text-base text-primary/70 sm:text-lg">
+            Subscribe to our newsletter and get <span className="font-semibold text-primary">15% off</span> your first order
+          </p>
+          <p className="mt-1 text-xs text-primary/50 sm:text-sm">
+            Plus, receive exclusive recipes and bakery updates—completely free!
+          </p>
+
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full"
+              required
+            />
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <Button
+                type="submit"
+                className="flex-1"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Subscribing..." : "Get 15% Off"}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleClose}
+                className="sm:flex-initial"
+              >
+                Maybe later
+              </Button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+}
+
