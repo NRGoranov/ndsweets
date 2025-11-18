@@ -19,9 +19,7 @@ export function TestimonialsSection({ testimonials }: { testimonials: Testimonia
             key={testimonial.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.05, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ willChange: "transform, opacity" }}
+            transition={{ delay: index * 0.1 }}
           >
             <Card className="h-full rounded-[2rem] border-primary/10 bg-white/90 p-6 text-primary">
               <div className="flex items-center gap-1 text-accent">

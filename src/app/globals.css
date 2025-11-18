@@ -24,8 +24,6 @@ body {
   scroll-behavior: smooth;
   overflow-y: scroll;
   scrollbar-width: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 html::-webkit-scrollbar,
@@ -35,24 +33,6 @@ body::-webkit-scrollbar {
 
 body {
   line-height: 1.5;
-}
-
-/* Smooth animations for mobile */
-@media (prefers-reduced-motion: no-preference) {
-  * {
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  /* GPU acceleration for transforms */
-  [class*="animate-"],
-  [class*="transition-"] {
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-  }
 }
 
 .luxury-gradient {

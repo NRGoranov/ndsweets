@@ -10,12 +10,10 @@ import type { Product } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCartStore } from "@/hooks/useCartStore";
-import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function FeaturedProductsSection({ products }: { products: Product[] }) {
   const addItem = useCartStore((state) => state.addItem);
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
-  const { shouldReduceMotion } = useReducedMotion();
 
   const handleAddToCart = (product: Product) => {
     addItem(product, product.variants[0], [], 1);
@@ -45,11 +43,10 @@ export function FeaturedProductsSection({ products }: { products: Product[] }) {
           return (
             <motion.div
               key={product.id}
-              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
-              whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: shouldReduceMotion ? "0px" : "-50px" }}
-              transition={shouldReduceMotion ? {} : { delay: index * 0.02, duration: 0.3, ease: "easeOut" }}
-              style={shouldReduceMotion ? {} : { willChange: "transform, opacity" }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
             >
               <Card className="h-full">
                 <CardHeader className="space-y-4 p-0">
@@ -59,7 +56,7 @@ export function FeaturedProductsSection({ products }: { products: Product[] }) {
                       alt={product.name}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      className="object-cover transition-transform duration-300 ease-out hover:scale-105"
+                      className="object-cover transition duration-500 hover:scale-105"
                       quality={90}
                       loading="lazy"
                     />
