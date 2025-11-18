@@ -4,6 +4,7 @@ import { Toaster } from "sonner";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { EmailPopup } from "@/components/layout/EmailPopup";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import "./globals.css";
 
 const display = Playfair_Display({
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen">{children}</main>
         <Footer />
         <EmailPopup />
+        <ScrollToTop />
         <Toaster position="top-center" richColors />
       </body>
     </html>
