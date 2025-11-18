@@ -5,8 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ScrollHint } from "@/components/layout/ScrollHint";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 export function HeroSection() {
+  const { shouldReduceMotion } = useReducedMotion();
+
   return (
     <section className="relative flex min-h-[90vh] flex-col justify-center overflow-hidden rounded-[2.5rem] bg-[#f8efe4] px-6 py-16 md:px-16">
       <div className="absolute inset-0">
@@ -23,9 +26,10 @@ export function HeroSection() {
 
       <div className="relative z-10 grid gap-12 text-white md:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? {} : { duration: 0.4, ease: "easeOut" }}
+          style={shouldReduceMotion ? {} : { willChange: "transform, opacity" }}
         >
           <p className="text-sm uppercase tracking-[0.3em] text-rose-100">
             Artisanal bakery in Sofia
@@ -48,10 +52,11 @@ export function HeroSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
+          initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+          whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? {} : { delay: 0.05, duration: 0.4, ease: "easeOut" }}
           className="rounded-[2rem] border border-white/15 bg-white/10 p-6 backdrop-blur-md"
+          style={shouldReduceMotion ? {} : { willChange: "transform, opacity" }}
         >
           <p className="text-sm uppercase tracking-[0.4em] text-white/70">This week’s highlights</p>
           <ul className="mt-6 space-y-4 text-white/90">

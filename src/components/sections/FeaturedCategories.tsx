@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import type { Category } from "@/lib/types";
 
 const categoryImages: Record<string, string> = {
@@ -19,6 +20,8 @@ const categoryImages: Record<string, string> = {
 };
 
 export function FeaturedCategoriesSection({ categories }: { categories: Category[] }) {
+  const { shouldReduceMotion } = useReducedMotion();
+
   return (
     <section className="container mt-16 space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -34,11 +37,12 @@ export function FeaturedCategoriesSection({ categories }: { categories: Category
         {categories.slice(0, 4).map((category, index) => (
           <motion.div
             key={category.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
+            whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: shouldReduceMotion ? "0px" : "-50px" }}
+            transition={shouldReduceMotion ? {} : { delay: index * 0.02, duration: 0.3, ease: "easeOut" }}
             className="group relative overflow-hidden rounded-[1.75rem] border border-primary/10 bg-white/80 p-6"
+            style={shouldReduceMotion ? {} : { willChange: "transform, opacity" }}
           >
             <div className="relative h-40 w-full overflow-hidden rounded-2xl">
               <Image
@@ -46,7 +50,7 @@ export function FeaturedCategoriesSection({ categories }: { categories: Category
                 alt={category.name}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
+                className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
               />
             </div>
             <div className="mt-4 space-y-2">

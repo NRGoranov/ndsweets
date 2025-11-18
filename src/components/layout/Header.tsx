@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Menu, ShoppingBag } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { useCartStore } from "@/hooks/useCartStore";
 import { CartPreview } from "./CartPreview";
 import { cn } from "@/lib/utils";
@@ -100,6 +100,7 @@ export function Header() {
               </button>
             </SheetTrigger>
             <SheetContent>
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="mt-10 flex flex-col gap-6">
                 {links.map((link) => (
                   <Link

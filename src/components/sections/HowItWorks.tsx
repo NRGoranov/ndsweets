@@ -26,9 +26,10 @@ export function HowItWorksSection({ steps }: { steps: HowItWorksStep[] }) {
               key={step.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: step.id * 0.1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: step.id * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
+              viewport={{ once: true, margin: "-50px" }}
               className="rounded-3xl border border-primary/10 bg-white/90 p-6 shadow-soft"
+              style={{ willChange: "transform, opacity" }}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <Icon className="h-5 w-5" />

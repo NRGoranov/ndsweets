@@ -11,8 +11,10 @@ export function SignatureHighlight() {
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         className="relative h-80 overflow-hidden rounded-[2rem]"
+        style={{ willChange: "transform, opacity" }}
       >
         <Image
           src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=900&q=80"
@@ -25,8 +27,10 @@ export function SignatureHighlight() {
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         className="space-y-4"
+        style={{ willChange: "transform, opacity" }}
       >
         <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Signature collection</p>
         <h2 className="font-display text-4xl text-primary">Classic ndsweets</h2>
