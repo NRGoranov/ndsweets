@@ -21,7 +21,7 @@ const SheetOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Overlay
       className={cn(
-        "fixed inset-0 z-50 bg-black/30 backdrop-blur-sm will-change-opacity transition-opacity duration-200 ease-out data-[state=closed]:opacity-0 data-[state=open]:opacity-100",
+        "fixed inset-0 z-50 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] data-[state=closed]:opacity-0 data-[state=open]:opacity-100",
         className,
       )}
     ref={ref}
@@ -39,7 +39,7 @@ const SheetContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-y-0 right-0 z-50 h-full w-full max-w-sm border-l border-primary/10 bg-cream-50 px-6 py-8 shadow-2xl transition-transform duration-200 ease-out data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
+        "fixed inset-y-0 right-0 z-50 h-full w-[65%] max-w-sm border-l border-primary/10 bg-cream-50 px-6 py-8 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
         className,
       )}
       {...props}
