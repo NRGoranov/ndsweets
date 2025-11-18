@@ -37,30 +37,21 @@ body {
   line-height: 1.5;
 }
 
-/* Mobile optimizations */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* GPU acceleration for animated elements only */
-[class*="motion"] {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-/* Reduce animations on mobile for better performance */
-@media (max-width: 768px) {
-  /* Only reduce animation durations, don't break layout */
-  [class*="animate-"] {
-    animation-duration: 0.3s !important;
-    animation-delay: 0s !important;
+/* Smooth animations for mobile */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
   
+  /* GPU acceleration for transforms */
+  [class*="animate-"],
   [class*="transition-"] {
-    transition-duration: 0.2s !important;
-    transition-delay: 0s !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
   }
 }
 
