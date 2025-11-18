@@ -42,34 +42,25 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* GPU acceleration for all interactive elements */
-button,
-a,
-[role="button"],
-[class*="motion"],
-[class*="animate-"],
-[class*="transition-"] {
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
+/* GPU acceleration for animated elements only */
+[class*="motion"] {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  will-change: transform;
 }
 
 /* Reduce animations on mobile for better performance */
 @media (max-width: 768px) {
-  *,
-  *::before,
-  *::after {
+  /* Only reduce animation durations, don't break layout */
+  [class*="animate-"] {
     animation-duration: 0.3s !important;
     animation-delay: 0s !important;
-    transition-duration: 0.2s !important;
-    transition-delay: 0s !important;
   }
   
-  /* Disable complex animations on mobile */
-  [class*="motion"] {
-    animation: none !important;
+  [class*="transition-"] {
+    transition-duration: 0.2s !important;
+    transition-delay: 0s !important;
   }
 }
 

@@ -39,10 +39,9 @@ const SheetContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-y-0 right-0 z-50 h-full w-full max-w-sm border-l border-primary/10 bg-cream-50 px-6 py-8 shadow-2xl will-change-transform transition-transform duration-200 ease-out data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
+        "fixed inset-y-0 right-0 z-50 h-full w-full max-w-sm border-l border-primary/10 bg-cream-50 px-6 py-8 shadow-2xl transition-transform duration-200 ease-out data-[state=closed]:translate-x-full data-[state=open]:translate-x-0",
         className,
       )}
-      style={{ transform: "translate3d(0, 0, 0)" }}
       {...props}
     >
       <SheetClose className="absolute right-4 top-4 rounded-full border border-primary/20 p-2 text-primary/70 transition hover:text-primary focus:outline-none">
