@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, ShoppingBag } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -11,12 +12,13 @@ import { CartPreview } from "./CartPreview";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/menu", label: "Menu" },
-  { href: "/custom-cakes", label: "Custom Cakes" },
-  { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Начало" },
+  { href: "/menu", label: "Меню" },
+  { href: "/custom-cakes", label: "Торти по поръчка" },
+  { href: "/about", label: "За нас" },
+  { href: "/faq", label: "Въпроси" },
+  { href: "/contact", label: "Контакт" },
+  { href: "/vouchers", label: "Ваучери" },
 ];
 
 export function Header() {
@@ -43,11 +45,18 @@ export function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between sm:h-20">
-        <Link
-          href="/"
-          className="font-display text-xl font-semibold text-primary tracking-wide sm:text-2xl"
-        >
-          ndsweets
+        <Link href="/" className="flex items-center gap-2">
+          <div className="relative h-10 w-10">
+            <Image
+              src="/Asset%201.png"
+              alt="ndsweets"
+              fill
+              sizes="40px"
+              className="object-contain"
+              priority
+            />
+          </div>
+          <span className="sr-only">ndsweets</span>
         </Link>
 
         <nav className="hidden items-center gap-4 text-sm font-medium text-primary/80 md:gap-6 lg:flex">
@@ -68,7 +77,7 @@ export function Header() {
         <div className="hidden items-center gap-3 lg:flex">
           <CartPreview>
             <Link href="/cart" className="relative">
-              <span className="sr-only">Cart</span>
+              <span className="sr-only">Количка</span>
               <ShoppingBag className="h-5 w-5 text-primary sm:h-6 sm:w-6" />
               {count > 0 && (
                 <span className="absolute -right-2 -top-2 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
@@ -78,13 +87,13 @@ export function Header() {
             </Link>
           </CartPreview>
           <Button asChild size="sm" className="hidden xl:inline-flex">
-            <Link href="/menu">Order now</Link>
+            <Link href="/menu">Поръчай</Link>
           </Button>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
           <Link href="/cart" className="relative">
-            <span className="sr-only">Cart</span>
+            <span className="sr-only">Количка</span>
             <ShoppingBag className="h-5 w-5 text-primary" />
             {count > 0 && (
               <span className="absolute -right-2 -top-2 flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
@@ -96,11 +105,11 @@ export function Header() {
             <SheetTrigger asChild>
               <button className="rounded-full border border-primary/20 p-2">
                 <Menu className="h-5 w-5 text-primary" />
-                <span className="sr-only">Open menu</span>
+                <span className="sr-only">Меню</span>
               </button>
             </SheetTrigger>
             <SheetContent>
-              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+              <SheetTitle className="sr-only">Навигация</SheetTitle>
               <div className="mt-10 flex flex-col gap-6">
                 {links.map((link) => (
                   <Link
@@ -113,10 +122,10 @@ export function Header() {
                 ))}
                 <Link href="/cart" className="flex items-center gap-3 text-primary">
                   <ShoppingBag className="h-5 w-5" />
-                  Cart ({count})
+                  Количка ({count})
                 </Link>
                 <Button asChild size="lg" className="w-full">
-                  <Link href="/menu">Order now</Link>
+                  <Link href="/menu">Поръчай</Link>
                 </Button>
               </div>
             </SheetContent>

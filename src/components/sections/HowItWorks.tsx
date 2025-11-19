@@ -15,8 +15,8 @@ export function HowItWorksSection({ steps }: { steps: HowItWorksStep[] }) {
   return (
     <section className="container mt-24">
       <div className="text-center">
-        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">How ordering works</p>
-        <h2 className="mt-2 font-display text-3xl text-primary">Effortless four-step ritual</h2>
+        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Как протича</p>
+        <h2 className="mt-2 font-display text-3xl text-primary">Четири стъпки до десерта</h2>
       </div>
       <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {steps.map((step) => {
@@ -34,7 +34,7 @@ export function HowItWorksSection({ steps }: { steps: HowItWorksStep[] }) {
                 <Icon className="h-5 w-5" />
               </div>
               <p className="mt-4 text-sm uppercase tracking-[0.2em] text-primary/60">
-                Step {step.id}
+                Стъпка {step.id}
               </p>
               <h3 className="mt-2 font-display text-2xl text-primary">{step.title}</h3>
               <p className="mt-2 text-primary/70">{step.description}</p>

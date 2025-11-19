@@ -13,15 +13,15 @@ export default function CartPage() {
   return (
     <div className="container pb-20 pt-12">
       <div className="space-y-2 text-center">
-        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Your cart</p>
-        <h1 className="font-display text-4xl text-primary">Almost ready to celebrate</h1>
+        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Вашата количка</p>
+        <h1 className="font-display text-4xl text-primary">Остават само няколко щриха</h1>
       </div>
       <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr,0.6fr]">
         <CartItems />
         <div className="space-y-4">
           <OrderSummary />
           <Button asChild disabled={!hasItems} className="w-full">
-            <Link href="/checkout">Proceed to checkout</Link>
+            <Link href="/checkout">Продължи към плащане</Link>
           </Button>
         </div>
       </div>

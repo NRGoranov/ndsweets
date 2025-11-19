@@ -43,7 +43,7 @@ export function ScrollToTop() {
             onClick={scrollToTop}
             size="icon"
             className="h-12 w-12 rounded-full bg-primary text-white shadow-lg transition hover:bg-primary/90 hover:scale-110"
-            aria-label="Scroll to top"
+            aria-label="Към началото"
           >
             <ArrowUp className="h-5 w-5" />
           </Button>

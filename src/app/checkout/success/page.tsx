@@ -10,19 +10,19 @@ export default async function CheckoutSuccessPage({
   const isMock = params.mock === "true";
   return (
     <div className="container flex min-h-[70vh] flex-col items-center justify-center gap-4 text-center">
-      <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Thank you</p>
-      <h1 className="font-display text-4xl text-primary">Your order is confirmed</h1>
+      <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Благодарим</p>
+      <h1 className="font-display text-4xl text-primary">Поръчката е потвърдена</h1>
       <p className="max-w-2xl text-primary/70">
         {isMock
-          ? "This was a simulated payment so you can experience the flow without connecting the backend."
-          : "Stripe has confirmed your payment. We will email you the order timeline shortly."}
+          ? "Това беше демонстрационно плащане, за да видите процеса без свързан бекенд."
+          : "Плащането е успешно. Ще получите имейл с детайли за подготовката и доставката."}
       </p>
       <div className="flex gap-4">
         <Button asChild>
-          <Link href="/">Return home</Link>
+          <Link href="/">Към началната страница</Link>
         </Button>
         <Button asChild variant="secondary">
-          <Link href="/menu">Keep browsing</Link>
+          <Link href="/menu">Продължи да разглеждаш</Link>
         </Button>
       </div>
     </div>

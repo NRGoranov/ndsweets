@@ -10,9 +10,9 @@ import { Button } from "@/components/ui/button";
 export function LocationsSection({ locations }: { locations: Location[] }) {
   return (
     <section className="container mt-24 space-y-8">
-      <div className="text-center">
-        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Visit us</p>
-        <h2 className="mt-2 font-display text-3xl text-primary">Locations & atelier hours</h2>
+      <div className="text-center md:mx-auto md:max-w-2xl md:text-left">
+        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Адреси</p>
+        <h2 className="mt-2 font-display text-3xl text-primary">Ателие и работно време</h2>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         {locations.map((location, index) => (
@@ -38,7 +38,7 @@ export function LocationsSection({ locations }: { locations: Location[] }) {
                 </ul>
                 <Button asChild variant="outline" className="mt-4">
                   <Link href={location.mapsUrl} target="_blank" rel="noreferrer">
-                    Open in Google Maps
+                    Отвори в Google Maps
                   </Link>
                 </Button>
               </CardContent>

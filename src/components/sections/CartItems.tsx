@@ -11,9 +11,9 @@ export function CartItems() {
   if (items.length === 0) {
     return (
       <div className="rounded-3xl border border-primary/10 bg-white/90 p-8 text-center">
-        <p className="text-primary/70">Your cart is as airy as our mousse.</p>
+        <p className="text-primary/70">Количката ви е толкова лека, колкото и нашият мус.</p>
         <Button asChild className="mt-4">
-          <Link href="/menu">Browse the menu</Link>
+          <Link href="/menu">Разгледайте менюто</Link>
         </Button>
       </div>
     );
@@ -41,7 +41,7 @@ export function CartItems() {
             <p className="text-sm text-primary/70">{item.variantLabel}</p>
             {item.extras.length > 0 && (
               <p className="text-xs text-primary/50">
-                Extras: {item.extras.map((extra) => extra.name).join(", ")}
+                Допълнения: {item.extras.map((extra) => extra.name).join(", ")}
               </p>
             )}
           </div>
@@ -51,6 +51,7 @@ export function CartItems() {
               onClick={() =>
                 updateQuantity(item.productId, item.variantLabel, Math.max(1, item.quantity - 1))
               }
+              aria-label="Намали количеството"
             >
               -
             </button>
@@ -60,19 +61,20 @@ export function CartItems() {
               onClick={() =>
                 updateQuantity(item.productId, item.variantLabel, item.quantity + 1)
               }
+              aria-label="Увеличи количеството"
             >
               +
             </button>
           </div>
           <div className="text-right">
             <p className="text-lg font-semibold text-primary">
-              {(item.price * item.quantity).toFixed(2)} BGN
+              {(item.price * item.quantity).toFixed(2)} лв.
             </p>
             <button
               className="text-sm text-primary/60 underline"
               onClick={() => removeItem(item.productId, item.variantLabel)}
             >
-              Remove
+              Премахни
             </button>
           </div>
         </div>

@@ -18,7 +18,7 @@ html,
 body {
   min-height: 100%;
   background-color: #fdf8f1;
-  color: #3b241c;
+  color: #2a1510;
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
   scroll-behavior: smooth;

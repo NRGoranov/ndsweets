@@ -1,28 +1,28 @@
 const faqs = [
   {
-    question: "How far in advance should I order?",
-    answer: "Signature cakes: 72h, weddings & custom: minimum 14 days, macarons: 48h.",
+    question: "Колко по-рано трябва да поръчам?",
+    answer: "Подписови торти: 72 часа, сватбени и персонализирани: минимум 14 дни, макарони: 48 часа.",
   },
   {
-    question: "Do you offer delivery?",
-    answer: "Yes, we deliver across Sofia with climate-controlled vehicles or coordinate pickup.",
+    question: "Предлагате ли доставка?",
+    answer: "Да, доставяме в рамките на София с хладилни автомобили или организираме вземане от ателието.",
   },
   {
-    question: "Can I customise flavours?",
+    question: "Мога ли да персонализирам вкусовете?",
     answer:
-      "Absolutely. Each cake has suggested pairings but you can request seasonal fillings or dietary adjustments.",
+      "Разбира се. Предлагаме препоръчани комбинации, но можем да включим сезонни кремове или безглутенови алтернативи.",
   },
   {
-    question: "What payment methods do you accept?",
-    answer: "Stripe-powered cards, Apple Pay, Google Pay and on-site POS for pickup orders.",
+    question: "Какви методи на плащане приемате?",
+    answer: "Банкови карти (Stripe), Apple Pay, Google Pay и POS при получаване от ателието.",
   },
 ];
 
 export default function FAQPage() {
   return (
     <div className="container space-y-6 py-12">
-      <p className="text-sm uppercase tracking-[0.4em] text-primary/50">FAQ</p>
-      <h1 className="font-display text-4xl text-primary">Plan with confidence</h1>
+      <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Въпроси</p>
+      <h1 className="font-display text-4xl text-primary">Планирайте спокойно</h1>
       <div className="grid gap-6 md:grid-cols-2">
         {faqs.map((faq) => (
           <div key={faq.question} className="rounded-3xl border border-primary/10 bg-white/90 p-6 shadow-soft">

@@ -12,10 +12,10 @@ import { useCartStore } from "@/hooks/useCartStore";
 import { submitOrder, createCheckoutSession } from "@/lib/order-client";
 
 const schema = z.object({
-  firstName: z.string().min(2, "Please add your first name"),
-  lastName: z.string().min(2, "Please add your last name"),
-  email: z.string().email(),
-  phone: z.string().min(6),
+  firstName: z.string().min(2, "Въведете име"),
+  lastName: z.string().min(2, "Въведете фамилия"),
+  email: z.string().email("Въведете валиден имейл"),
+  phone: z.string().min(6, "Моля, оставете телефон за контакт"),
   method: z.enum(["PICKUP", "DELIVERY"]),
   location: z.string().optional(),
   city: z.string().optional(),
@@ -80,7 +80,7 @@ export function CheckoutForm() {
       router.push(session.url);
     } catch (error) {
       console.error(error);
-      alert("We could not start the payment flow just now. Please try again.");
+      alert("Възникна затруднение при плащането. Опитайте отново след малко.");
     } finally {
       setLoading(false);
     }
@@ -88,32 +88,32 @@ export function CheckoutForm() {
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 rounded-3xl border border-primary/10 bg-white/90 p-6 shadow-soft">
-      <h2 className="font-display text-3xl text-primary">Checkout</h2>
+      <h2 className="font-display text-3xl text-primary">Детайли за поръчката</h2>
       <div className="grid gap-4 md:grid-cols-2">
         <div>
-          <label className="text-sm text-primary">First name</label>
-          <Input {...form.register("firstName")} />
+          <label className="text-sm text-primary">Име</label>
+          <Input {...form.register("firstName")} placeholder="Ана" />
           {form.formState.errors.firstName && (
             <p className="mt-1 text-xs text-red-500">{form.formState.errors.firstName.message}</p>
           )}
         </div>
         <div>
-          <label className="text-sm text-primary">Last name</label>
-          <Input {...form.register("lastName")} />
+          <label className="text-sm text-primary">Фамилия</label>
+          <Input {...form.register("lastName")} placeholder="Иванова" />
           {form.formState.errors.lastName && (
             <p className="mt-1 text-xs text-red-500">{form.formState.errors.lastName.message}</p>
           )}
         </div>
         <div>
-          <label className="text-sm text-primary">Email</label>
-          <Input type="email" {...form.register("email")} />
+          <label className="text-sm text-primary">Имейл</label>
+          <Input type="email" {...form.register("email")} placeholder="studio@example.com" />
           {form.formState.errors.email && (
             <p className="mt-1 text-xs text-red-500">{form.formState.errors.email.message}</p>
           )}
         </div>
         <div>
-          <label className="text-sm text-primary">Phone</label>
-          <Input {...form.register("phone")} />
+          <label className="text-sm text-primary">Телефон</label>
+          <Input {...form.register("phone")} placeholder="+359..." />
           {form.formState.errors.phone && (
             <p className="mt-1 text-xs text-red-500">{form.formState.errors.phone.message}</p>
           )}
@@ -121,7 +121,7 @@ export function CheckoutForm() {
       </div>
 
       <div className="space-y-3">
-        <label className="text-sm text-primary">Delivery method</label>
+        <label className="text-sm text-primary">Метод на получаване</label>
         <div className="flex gap-3">
           {["PICKUP", "DELIVERY"].map((method) => (
             <button
@@ -132,7 +132,7 @@ export function CheckoutForm() {
                 form.watch("method") === method ? "border-primary bg-primary/10 text-primary" : "border-primary/20 text-primary/70"
               }`}
             >
-              {method === "PICKUP" ? "Pickup" : "Delivery"}
+              {method === "PICKUP" ? "Вземане от ателие" : "Доставка"}
             </button>
           ))}
         </div>
@@ -140,43 +140,46 @@ export function CheckoutForm() {
 
   {form.watch("method") === "PICKUP" ? (
         <div>
-          <label className="text-sm text-primary">Preferred atelier</label>
+          <label className="text-sm text-primary">Предпочитано ателие</label>
           <select
             {...form.register("location")}
-            defaultValue="Atelier Vitosha"
+            defaultValue="Ателие „Витоша“"
             className="h-11 w-full rounded-2xl border border-primary/20 bg-white/80 px-4"
           >
-            <option value="Atelier Vitosha">Atelier Vitosha</option>
-            <option value="Production Kitchen">Production Kitchen</option>
+            <option value="Ателие „Витоша“">Ателие „Витоша“</option>
+            <option value="Производствена кухня">Производствена кухня</option>
           </select>
         </div>
       ) : (
         <div className="grid gap-4 md:grid-cols-3">
           <div>
-            <label className="text-sm text-primary">City</label>
-            <Input {...form.register("city")} />
+            <label className="text-sm text-primary">Град</label>
+            <Input {...form.register("city")} placeholder="София" />
           </div>
           <div>
-            <label className="text-sm text-primary">Street</label>
-            <Input {...form.register("street")} />
+            <label className="text-sm text-primary">Улица</label>
+            <Input {...form.register("street")} placeholder="ул. ... №..." />
           </div>
           <div>
-            <label className="text-sm text-primary">Building / Entrance</label>
-            <Input {...form.register("building")} />
+            <label className="text-sm text-primary">Сграда / вход</label>
+            <Input {...form.register("building")} placeholder="етаж, апартамент" />
           </div>
         </div>
       )}
 
       <div>
-        <label className="text-sm text-primary">Message on cake / special instructions</label>
-        <Textarea {...form.register("notes")} placeholder="Gold leaf on top, please add “Happy Anniversary”" />
+        <label className="text-sm text-primary">Послание върху десерта / Бележки</label>
+        <Textarea
+          {...form.register("notes")}
+          placeholder="Златен лист отгоре, надпис „Честит юбилей“..."
+        />
       </div>
 
       <Button type="submit" size="lg" className="w-full" disabled={loading}>
-        {loading ? "Processing..." : "Proceed to secure payment"}
+        {loading ? "Обработваме..." : "Продължи към плащане"}
       </Button>
       <p className="text-xs text-primary/60">
-        Payments are powered by Stripe. In demo mode, this button will simulate a successful payment.
+        Плащанията се обработват от Stripe. В демо режим бутонът симулира успешна транзакция.
       </p>
     </form>
   );

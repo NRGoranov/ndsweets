@@ -17,8 +17,8 @@ export function ProductCard({ product }: { product: Product }) {
   const handleAddToCart = () => {
     addItem(product, product.variants[0], [], 1);
     setJustAdded(true);
-    toast.success("Added to cart!", {
-      description: `${product.name} has been added to your cart`,
+    toast.success("Добавено в количката!", {
+      description: `${product.name} очаква финалната ви поръчка.`,
       duration: 2000,
     });
     setTimeout(() => setJustAdded(false), 2000);
@@ -40,19 +40,19 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="space-y-3 p-4 sm:p-6">
         <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-display text-lg text-primary sm:text-xl">{product.name}</p>
-          <span className="text-xs text-primary/60 sm:text-sm">from {product.basePrice} BGN</span>
+          <span className="text-xs text-primary/60 sm:text-sm">от {product.basePrice.toFixed(2)} лв.</span>
         </div>
         <p className="line-clamp-2 text-xs text-primary/70 sm:text-sm">{product.description}</p>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
           <Button asChild variant="outline" className="flex-1 text-sm sm:text-base">
-            <Link href={`/products/${product.slug}`}>View</Link>
+            <Link href={`/products/${product.slug}`}>Виж детайли</Link>
           </Button>
           <Button
             variant="secondary"
             size="icon"
             onClick={handleAddToCart}
             className={justAdded ? "bg-primary text-white" : ""}
-            aria-label="Add to cart"
+            aria-label="Добави в количката"
           >
             {justAdded ? (
               <Check className="h-4 w-4" />

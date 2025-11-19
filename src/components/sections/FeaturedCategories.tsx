@@ -18,20 +18,24 @@ const categoryImages: Record<string, string> = {
     "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80",
 };
 
+const EXCLUDED_CATEGORY_SLUG = "gift-vouchers";
+
 export function FeaturedCategoriesSection({ categories }: { categories: Category[] }) {
+  const displayCategories = categories.filter((category) => category.slug !== EXCLUDED_CATEGORY_SLUG);
+
   return (
     <section className="container mt-16 space-y-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Curated by mood</p>
-          <h2 className="font-display text-3xl text-primary">Featured categories</h2>
+          <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Категории</p>
+          <h2 className="font-display text-3xl text-primary">Селекция десерти</h2>
         </div>
         <Button variant="outline" asChild>
-          <Link href="/menu">See entire menu</Link>
+          <Link href="/menu">Виж цялото меню</Link>
         </Button>
       </div>
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-        {categories.slice(0, 4).map((category, index) => (
+        {displayCategories.slice(0, 4).map((category, index) => (
           <motion.div
             key={category.id}
             initial={{ opacity: 0, y: 20 }}
@@ -54,7 +58,7 @@ export function FeaturedCategoriesSection({ categories }: { categories: Category
               <p className="text-sm text-primary/70">{category.description}</p>
             </div>
             <Button asChild variant="ghost" className="mt-4 px-0 font-semibold text-primary">
-              <Link href={`/menu?category=${category.slug}`}>Explore</Link>
+              <Link href={`/menu?category=${category.slug}`}>Разгледай</Link>
             </Button>
           </motion.div>
         ))}

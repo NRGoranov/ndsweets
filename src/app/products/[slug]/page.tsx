@@ -26,7 +26,7 @@ export default async function ProductPage({ params }: Props) {
     <div className="container pb-20">
       <ProductConfigurator product={product} />
       <div className="mt-20 space-y-6">
-        <h2 className="font-display text-3xl text-primary">You may also like</h2>
+        <h2 className="font-display text-3xl text-primary">Комбинирай с още</h2>
         <div className="grid gap-6 md:grid-cols-3">
           {suggestions.map((suggestion) => (
             <ProductCard key={suggestion.id} product={suggestion} />

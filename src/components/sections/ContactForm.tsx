@@ -9,10 +9,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 const schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
+  name: z.string().min(2, "Добавете име"),
+  email: z.string().email("Въведете валиден имейл"),
   phone: z.string().optional(),
-  message: z.string().min(10, "Tell us a little more about your request"),
+  message: z.string().min(10, "Разкажете ни малко повече за запитването"),
 });
 
 type ContactValues = z.infer<typeof schema>;
@@ -32,36 +32,40 @@ export function ContactForm() {
   return (
     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 rounded-3xl border border-primary/10 bg-white/90 p-6 shadow-soft">
       <div>
-        <label className="text-sm text-primary">Name</label>
-        <Input {...form.register("name")} />
+        <label className="text-sm text-primary">Име</label>
+        <Input {...form.register("name")} placeholder="Мария Иванова" />
         {form.formState.errors.name && (
           <p className="text-xs text-red-500">{form.formState.errors.name.message}</p>
         )}
       </div>
       <div>
-        <label className="text-sm text-primary">Email</label>
-        <Input type="email" {...form.register("email")} />
+        <label className="text-sm text-primary">Имейл</label>
+        <Input type="email" {...form.register("email")} placeholder="hello@example.com" />
         {form.formState.errors.email && (
           <p className="text-xs text-red-500">{form.formState.errors.email.message}</p>
         )}
       </div>
       <div>
-        <label className="text-sm text-primary">Phone (optional)</label>
-        <Input {...form.register("phone")} />
+        <label className="text-sm text-primary">Телефон (по желание)</label>
+        <Input {...form.register("phone")} placeholder="+359..." />
       </div>
       <div>
-        <label className="text-sm text-primary">Tell us everything</label>
-        <Textarea {...form.register("message")} rows={5} />
+        <label className="text-sm text-primary">Разкажете ни повече</label>
+        <Textarea
+          {...form.register("message")}
+          rows={5}
+          placeholder="Напр. Торта за 18-ти рожден ден в пастелни тонове..."
+        />
         {form.formState.errors.message && (
           <p className="text-xs text-red-500">{form.formState.errors.message.message}</p>
         )}
       </div>
       <Button type="submit" className="w-full">
-        Send message
+        Изпрати запитване
       </Button>
       {status === "success" && (
         <p className="text-center text-sm text-primary">
-          Thank you! Our pastry concierge will reply shortly.
+          Благодарим! Ще се свържем с вас в рамките на работния ден.
         </p>
       )}
     </form>

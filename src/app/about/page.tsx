@@ -1,21 +1,22 @@
 export const metadata = {
-  title: "About | ndsweets",
+  title: "За нас | ndsweets",
 };
 
 export default function AboutPage() {
   return (
     <div className="container space-y-6 py-12">
-      <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Our story</p>
-      <h1 className="font-display text-4xl text-primary">Rooted in Sofia, inspired by Paris</h1>
+      <p className="text-sm uppercase tracking-[0.4em] text-primary/50">За нас</p>
+      <h1 className="font-display text-4xl text-primary">Ателиe за съвременни десерти в София</h1>
       <p className="max-w-3xl text-lg text-primary/80">
-        ndsweets is a boutique bakery studio balancing couture pastry craft with the warmth of a
-        neighbourhood atelier. We source Bulgarian Jersey cream, single-origin chocolate and organic
-        flour from local mills. Every signature piece is finished by hand—inspired by Mishka Bakery’s
-        refined aesthetic yet translated into our own timeless voice.
+        ndsweets е бутиково сладкарско студио, където висшата сладкарска техника среща уютна
+        атмосфера. Работим с българска сметана от пасищни стопанства, шоколад с проследим произход и
+        брашна от малки мелници. Всеки детайл се изработва на ръка – от рисуваните темперирани
+        шоколади до финалните флорални акценти.
       </p>
       <p className="max-w-3xl text-primary/70">
-        Our team of pastry chefs, stylists and service concierges collaborate daily to ensure smooth
-        ordering, meticulous logistics and styling touches that feel both luxurious and welcoming.
+        Екипът ни от сладкари, декоратори и координатори се грижи процесът да бъде лек – от първото
+        запитване през дегустацията до доставката на празника ви. Вярваме, че луксът може да бъде
+        топъл и персонален, и всяка нова торта го доказва.
       </p>
     </div>
   );

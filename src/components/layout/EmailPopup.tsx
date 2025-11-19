@@ -31,7 +31,7 @@ export function EmailPopup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address");
+      toast.error("Моля, въведете валиден имейл");
       return;
     }
 
@@ -46,8 +46,8 @@ export function EmailPopup() {
       localStorage.setItem("ndsweets-newsletter", JSON.stringify(subscriptions));
     }
 
-    toast.success("You're subscribed!", {
-      description: "Enjoy 15% off your first order. Check your email for the discount code. Newsletter is completely free!",
+    toast.success("Благодарим за доверието!", {
+      description: "Получавате 15% отстъпка за първа поръчка и безплатен достъп до нашия бюлетин.",
       duration: 5000,
     });
 
@@ -70,26 +70,26 @@ export function EmailPopup() {
         <button
           onClick={handleClose}
           className="absolute right-4 top-4 rounded-full p-1 text-primary/60 transition hover:bg-primary/10 hover:text-primary"
-          aria-label="Close popup"
+          aria-label="Затвори"
         >
           <X className="h-5 w-5" />
         </button>
 
         <div className="text-center">
           <h2 className="font-display text-2xl text-primary sm:text-3xl">
-            Welcome to ndsweets!
+            Добре дошли в ndsweets!
           </h2>
           <p className="mt-3 text-base text-primary/70 sm:text-lg">
-            Subscribe to our newsletter and get <span className="font-semibold text-primary">15% off</span> your first order
+            Абонирайте се и получите <span className="font-semibold text-primary">15% отстъпка</span> за първа поръчка.
           </p>
           <p className="mt-1 text-xs text-primary/50 sm:text-sm">
-            Plus, receive exclusive recipes and bakery updates—completely free!
+            Ще изпращаме рецепти, вдъхновения и ранни покани – без такса.
           </p>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <Input
               type="email"
-              placeholder="Enter your email"
+              placeholder="Въведете имейл"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full"
@@ -101,7 +101,7 @@ export function EmailPopup() {
                 className="flex-1"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Subscribing..." : "Get 15% Off"}
+                {isSubmitting ? "Абонирам..." : "Вземи 15%"}
               </Button>
               <Button
                 type="button"
@@ -109,7 +109,7 @@ export function EmailPopup() {
                 onClick={handleClose}
                 className="sm:flex-initial"
               >
-                Maybe later
+                Може би по-късно
               </Button>
             </div>
           </form>

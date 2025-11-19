@@ -18,8 +18,8 @@ export function FeaturedProductsSection({ products }: { products: Product[] }) {
   const handleAddToCart = (product: Product) => {
     addItem(product, product.variants[0], [], 1);
     setAddedItems((prev) => new Set(prev).add(product.id));
-    toast.success("Added to cart!", {
-      description: `${product.name} has been added to your cart`,
+    toast.success("Добавено в количката!", {
+      description: `${product.name} очаква финалната ви поръчка.`,
       duration: 2000,
     });
     setTimeout(() => {
@@ -34,8 +34,8 @@ export function FeaturedProductsSection({ products }: { products: Product[] }) {
   return (
     <section className="container mt-16 space-y-6 sm:mt-24">
       <div className="flex flex-col gap-2 text-center sm:gap-4">
-        <p className="text-xs uppercase tracking-[0.4em] text-primary/50 sm:text-sm">Bestsellers</p>
-        <h2 className="font-display text-2xl text-primary sm:text-3xl">Loved this month</h2>
+        <p className="text-xs uppercase tracking-[0.4em] text-primary/50 sm:text-sm">Бестселъри</p>
+        <h2 className="font-display text-2xl text-primary sm:text-3xl">Любими тази седмица</h2>
       </div>
       <div className="grid gap-4 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
         {products.slice(0, 6).map((product, index) => {
@@ -71,18 +71,18 @@ export function FeaturedProductsSection({ products }: { products: Product[] }) {
                 <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <p className="text-base font-semibold text-primary sm:text-lg">
-                      from {product.basePrice.toFixed(2)} BGN
+                      от {product.basePrice.toFixed(2)} лв.
                     </p>
                     <div className="flex items-center gap-2 sm:gap-3">
                       <Button asChild variant="ghost" size="sm" className="flex-1 sm:flex-initial">
-                        <Link href={`/products/${product.slug}`}>View</Link>
+                        <Link href={`/products/${product.slug}`}>Виж детайли</Link>
                       </Button>
                       <Button
                         size="icon"
                         variant="secondary"
                         onClick={() => handleAddToCart(product)}
                         className={justAdded ? "bg-primary text-white" : ""}
-                        aria-label="Add to cart"
+                        aria-label="Добави в количката"
                       >
                         {justAdded ? (
                           <Check className="h-4 w-4" />

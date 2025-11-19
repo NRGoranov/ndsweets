@@ -37,7 +37,7 @@ export function ScrollHint() {
           style={{ willChange: "transform, opacity" }}
         >
           <div className="flex items-center gap-2">
-            <span>Scroll to explore</span>
+            <span>Плъзни надолу</span>
             <ChevronDown className="h-4 w-4 animate-scroll-hint" />
           </div>
         </motion.button>

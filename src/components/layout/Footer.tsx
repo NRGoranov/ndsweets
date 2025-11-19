@@ -14,7 +14,7 @@ export function Footer() {
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes("@")) {
-      toast.error("Please enter a valid email address");
+      toast.error("Моля, въведете валиден имейл");
       return;
     }
 
@@ -29,8 +29,8 @@ export function Footer() {
       localStorage.setItem("ndsweets-newsletter", JSON.stringify(subscriptions));
     }
 
-    toast.success("Successfully subscribed!", {
-      description: "You'll receive our newsletter with exclusive recipes and updates. It's completely free!",
+    toast.success("Успешно се абонирахте!", {
+      description: "Ще получавате рецепти, предложения и новини – абонаментът е безплатен.",
       duration: 4000,
     });
 
@@ -45,27 +45,26 @@ export function Footer() {
           <div>
             <p className="font-display text-2xl text-primary">ndsweets</p>
             <p className="mt-2 max-w-sm text-sm text-primary/70">
-              Luxurious yet heartfelt sweets handcrafted in Sofia with sustainably sourced
-              ingredients.
+              Луксозни, но топли десерти, ръчно изработени в София с подбрани български продукти.
             </p>
           </div>
 
           <div>
-            <h3 className="font-display text-lg text-primary">Newsletter</h3>
+            <h3 className="font-display text-lg text-primary">Бюлетин</h3>
             <p className="mt-2 text-sm text-primary/70">
-              Subscribe for free recipes, exclusive offers, and bakery updates.
+              Абонирайте се за рецепти, специални предложения и новини от ателието.
             </p>
             <form onSubmit={handleNewsletterSubmit} className="mt-4 flex gap-2">
               <Input
                 type="email"
-                placeholder="Your email"
+                placeholder="Вашият имейл"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1"
                 required
               />
               <Button type="submit" disabled={isSubmitting} size="sm">
-                {isSubmitting ? "..." : "Subscribe"}
+                {isSubmitting ? "..." : "Абонирай се"}
               </Button>
             </form>
           </div>
@@ -79,8 +78,15 @@ export function Footer() {
               <Mail className="h-4 w-4" />
               orders@ndsweets.com
             </Link>
-            <p className="mt-4">© {new Date().getFullYear()} ndsweets. All rights reserved.</p>
+            <p className="mt-4">© {new Date().getFullYear()} ndsweets. Всички права запазени.</p>
           </div>
+          <p className="mt-6 text-center text-xs text-primary/50 md:text-left">
+            Създаден от{" "}
+            <Link href="https://www.nrgtrw.com" target="_blank" rel="noreferrer" className="underline transition hover:text-primary">
+              nrgtrw
+            </Link>
+            .
+          </p>
         </div>
       </div>
     </footer>

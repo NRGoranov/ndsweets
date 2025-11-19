@@ -16,7 +16,7 @@ export function SignatureHighlight() {
       >
         <Image
           src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=900&q=80"
-          alt="Luxury signature cake with elegant decoration"
+          alt="Подписова торта с елегантна декорация"
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
@@ -28,19 +28,19 @@ export function SignatureHighlight() {
         transition={{ duration: 0.6 }}
         className="space-y-4"
       >
-        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Signature collection</p>
-        <h2 className="font-display text-4xl text-primary">Classic ndsweets</h2>
+        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Подпис колекция</p>
+        <h2 className="font-display text-4xl text-primary">Класика ndsweets</h2>
         <p className="text-primary/80">
-          Inspired by Mishka’s famed FATCARON yet evolved into our own couture pastries—airy
-          mousseline layers, jewel-tone glazes and delicate textures designed for celebration.
+          Вдъхновена от модерните парижки патисерии, колекцията ни обединява леки мусове, кадифени
+          глазури и детайли с ръчно рисуван финес.
         </p>
         <ul className="space-y-3 text-primary/80">
-          <li>• Champagne praline carrousel</li>
-          <li>• Tahitian vanilla cloud cake</li>
-          <li>• Pistachio passionfruit charlotte</li>
+          <li>• Карусел от шампанско и пралине</li>
+          <li>• Ванилов облак от Таити</li>
+          <li>• Шарлот с шамфъстък и маракуя</li>
         </ul>
         <Button asChild>
-          <Link href="/menu?featured=true">See signature collection</Link>
+          <Link href="/menu?featured=true">Разгледай колекцията</Link>
         </Button>
       </motion.div>
     </section>

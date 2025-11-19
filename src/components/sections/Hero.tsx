@@ -12,7 +12,7 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1500&q=80"
-          alt="Luxury pastry and cake display in elegant bakery"
+          alt="Витрина с ръчно изработени десерти"
           fill
           sizes="100vw"
           className="object-cover opacity-60"
@@ -25,24 +25,25 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          style={{ willChange: "transform, opacity" }}
         >
           <p className="text-sm uppercase tracking-[0.3em] text-rose-100">
-            Artisanal bakery in Sofia
+            Ателиe за сладкарство в София
           </p>
           <h1 className="mt-6 font-display text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-            Handcrafted sweets for your sweetest moments
+            Ръчно изработени десерти за най-сладките ви моменти
           </h1>
           <p className="mt-6 max-w-xl text-lg text-rose-100/90">
-            Boutique desserts rooted in European pastry traditions, layered with Bulgarian soul and
-            impeccable hospitality.
+            Бутикови десерти, вдъхновени от европейските традиции, създадени с българска душевност и
+            персонално отношение към всяка поръчка.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button size="lg" asChild>
-              <Link href="/menu">View menu</Link>
+              <Link href="/menu">Виж менюто</Link>
             </Button>
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/custom-cakes">Design a custom cake</Link>
+              <Link href="/custom-cakes">Създай торта по поръчка</Link>
             </Button>
           </div>
         </motion.div>
@@ -50,22 +51,23 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="rounded-[2rem] border border-white/15 bg-white/10 p-6 backdrop-blur-md"
+          transition={{ delay: 0.05, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          className="rounded-[2rem] border border-white/20 bg-white/25 p-6 backdrop-blur-md"
+          style={{ willChange: "transform, opacity" }}
         >
-          <p className="text-sm uppercase tracking-[0.4em] text-white/70">This week’s highlights</p>
+          <p className="text-sm uppercase tracking-[0.4em] text-white/70">Акценти тази седмица</p>
           <ul className="mt-6 space-y-4 text-white/90">
             <li>
-              <p className="font-display text-xl">Velvet raspberry bento</p>
-              <p className="text-sm text-white/75">Limited edition with Sicilian pistachio lace</p>
+              <p className="font-display text-xl">Кадифено малиново бенто</p>
+              <p className="text-sm text-white/75">Сицилиански шамфъстък и алено кадифе</p>
             </li>
             <li>
-              <p className="font-display text-xl">Champagne praline cake</p>
-              <p className="text-sm text-white/75">Layered mousse with almond sponge & brûléed top</p>
+              <p className="font-display text-xl">Шампанско и пралине</p>
+              <p className="text-sm text-white/75">Слоест мус с бадемов блат и карамелизиран топинг</p>
             </li>
             <li>
-              <p className="font-display text-xl">Macaron atelier box</p>
-              <p className="text-sm text-white/75">12-piece palette of fruit-forward classics</p>
+              <p className="font-display text-xl">Кутия Макарон Ателиe</p>
+              <p className="text-sm text-white/75">12 флорални и плодови вкуса, сменящи се всеки сезон</p>
             </li>
           </ul>
         </motion.div>

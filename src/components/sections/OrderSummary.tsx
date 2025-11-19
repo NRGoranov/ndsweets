@@ -15,13 +15,13 @@ export function OrderSummary() {
           (item.price + item.extras.reduce((extraSum, extra) => extraSum + extra.price, 0)),
       0,
     );
-    const delivery = 8;
+    const delivery = items.length > 0 ? 8 : 0;
     return { subtotal, delivery, total: subtotal + delivery };
   }, [items]);
 
   return (
     <div className="rounded-3xl border border-primary/10 bg-white/90 p-6 shadow-soft">
-      <h3 className="font-display text-2xl text-primary">Order summary</h3>
+      <h3 className="font-display text-2xl text-primary">Резюме на поръчката</h3>
       <div className="mt-6 space-y-4">
         {items.map((item) => (
           <div key={`${item.productId}-${item.variantLabel}`} className="flex gap-4">
@@ -40,28 +40,28 @@ export function OrderSummary() {
               <p>{item.variantLabel}</p>
               {item.extras.length > 0 && (
                 <p className="text-xs text-primary/60">
-                  Extras: {item.extras.map((extra) => extra.name).join(", ")}
+                  Допълнения: {item.extras.map((extra) => extra.name).join(", ")}
                 </p>
               )}
             </div>
             <p className="text-sm font-semibold text-primary">
-              {(item.quantity * item.price).toFixed(2)} BGN
+              {(item.quantity * item.price).toFixed(2)} лв.
             </p>
           </div>
         ))}
       </div>
       <div className="mt-6 space-y-2 text-sm text-primary/70">
         <div className="flex justify-between">
-          <span>Subtotal</span>
-          <span>{totals.subtotal.toFixed(2)} BGN</span>
+          <span>Междинна сума</span>
+          <span>{totals.subtotal.toFixed(2)} лв.</span>
         </div>
         <div className="flex justify-between">
-          <span>Delivery</span>
-          <span>{totals.delivery.toFixed(2)} BGN</span>
+          <span>Доставка</span>
+          <span>{totals.delivery.toFixed(2)} лв.</span>
         </div>
         <div className="flex justify-between border-t border-primary/10 pt-3 text-base font-semibold text-primary">
-          <span>Total</span>
-          <span>{totals.total.toFixed(2)} BGN</span>
+          <span>Общо</span>
+          <span>{totals.total.toFixed(2)} лв.</span>
         </div>
       </div>
     </div>

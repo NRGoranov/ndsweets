@@ -25,8 +25,8 @@ export function ProductConfigurator({ product }: { product: Product }) {
 
   const handleAdd = () => {
     addItem(product, variant, selectedExtras, quantity);
-    toast.success("Added to cart!", {
-      description: `${quantity} × ${product.name} (${variant.label}) has been added to your cart`,
+    toast.success("Добавено в количката!", {
+      description: `${quantity} × ${product.name} (${variant.label}) бяха добавени към поръчката`,
       duration: 3000,
     });
   };
@@ -53,7 +53,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
             >
               <Image
                 src={src}
-                alt={`${product.name} view ${index + 1}`}
+                alt={`${product.name} изглед ${index + 1}`}
                 fill
                 sizes="(max-width: 640px) 33vw, (max-width: 1024px) 33vw, 16vw"
                 className="object-cover transition-opacity hover:opacity-80 cursor-pointer"
@@ -64,17 +64,15 @@ export function ProductConfigurator({ product }: { product: Product }) {
           ))}
         </div>
       </div>
-      <div className="rounded-[2rem] border border-primary/10 bg-white/90 p-4 shadow-soft sm:p-8">
-        <p className="text-xs uppercase tracking-[0.4em] text-primary/50 sm:text-sm">Product</p>
+      <div className="rounded-[2рем] border border-primary/10 bg-white/90 p-4 shadow-soft sm:p-8">
+        <p className="text-xs uppercase tracking-[0.4em] text-primary/50 sm:text-sm">Продукт</p>
         <h1 className="mt-2 font-display text-2xl text-primary sm:mt-3 sm:text-4xl">
           {product.name}
         </h1>
         <p className="mt-2 text-sm text-primary/70 sm:text-base">{product.description}</p>
 
         <div className="mt-4 sm:mt-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">
-            Sizes & servings
-          </p>
+          <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">Размер и порции</p>
           <div className="mt-2 grid gap-2 sm:mt-3 sm:gap-3">
             {product.variants.map((v) => (
               <button
@@ -86,7 +84,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
                 }`}
               >
                 <span>{v.label}</span>
-                <span>{v.price.toFixed(2)} BGN</span>
+                <span>{v.price.toFixed(2)} лв.</span>
               </button>
             ))}
           </div>
@@ -94,9 +92,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
 
         {product.fillings.length > 0 && (
           <div className="mt-4 sm:mt-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">
-              Flavour palette
-            </p>
+            <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">Вкусов профил</p>
             <div className="mt-2 flex flex-wrap gap-2 text-xs text-primary/70 sm:mt-3 sm:text-sm">
               {product.fillings.map((filling) => (
                 <span key={filling} className="rounded-full bg-primary/10 px-4 py-2">
@@ -108,7 +104,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
         )}
 
         <div className="mt-4 sm:mt-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">Extras</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">Допълнения</p>
           <div className="mt-2 grid gap-2 sm:mt-3 sm:gap-3">
             {product.extras.map((extra) => {
               const active = selectedExtras.some((e) => e.id === extra.id);
@@ -125,7 +121,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
                     <p className="font-semibold">{extra.name}</p>
                     {extra.description && <p className="text-sm text-primary/60">{extra.description}</p>}
                   </span>
-                  <span>+{extra.price.toFixed(2)} BGN</span>
+                  <span>+{extra.price.toFixed(2)} лв.</span>
                 </button>
               );
             })}
@@ -138,7 +134,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
               className="h-9 w-9 rounded-full border border-primary/20 text-primary transition hover:bg-primary/10 sm:h-10 sm:w-10"
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
               type="button"
-              aria-label="Decrease quantity"
+              aria-label="Намали количеството"
             >
               -
             </button>
@@ -149,21 +145,21 @@ export function ProductConfigurator({ product }: { product: Product }) {
               className="h-9 w-9 rounded-full border border-primary/20 text-primary transition hover:bg-primary/10 sm:h-10 sm:w-10"
               onClick={() => setQuantity(quantity + 1)}
               type="button"
-              aria-label="Increase quantity"
+              aria-label="Увеличи количеството"
             >
               +
             </button>
           </div>
           <div className="text-center sm:text-right">
-            <p className="text-xs text-primary/60 sm:text-sm">Total</p>
+            <p className="text-xs text-primary/60 sm:text-sm">Сума</p>
             <p className="text-xl font-semibold text-primary sm:text-2xl">
-              {total.toFixed(2)} BGN
+              {total.toFixed(2)} лв.
             </p>
           </div>
         </div>
 
         <Button className="mt-4 w-full sm:mt-6" size="lg" onClick={handleAdd}>
-          Add to cart
+          Добави в количката
         </Button>
       </div>
     </div>

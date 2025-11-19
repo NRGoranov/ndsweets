@@ -18,10 +18,15 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "ndsweets | Handcrafted sweets for your sweetest moments",
+  title: "ndsweets | Ръчно изработени десерти",
   description:
-    "Luxurious yet welcoming bakery experience inspired by Mishka Bakery—crafted in Sofia.",
+    "Луксозно, но уютно сладкарско изживяване в София – торти, бенто десерти и макарони по авторски рецепти.",
   metadataBase: new URL("https://ndsweets-demo.vercel.app"),
+  icons: {
+    icon: "/icon/favicon.ico",
+    shortcut: "/icon/favicon-32x32.png",
+    apple: "/icon/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

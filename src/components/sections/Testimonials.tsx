@@ -8,10 +8,10 @@ import { Card } from "@/components/ui/card";
 export function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
   return (
     <section className="container mt-24">
-      <div className="text-center">
-        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Social proof</p>
-        <h2 className="mt-2 font-display text-3xl text-primary">Guests who celebrated with us</h2>
-        <p className="mt-3 text-primary/70">4.8 average score based on atelier reviews.</p>
+      <div className="text-center md:mx-auto md:max-w-2xl md:text-left">
+        <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Отзиви</p>
+        <h2 className="mt-2 font-display text-3xl text-primary">Гости, които празнуваха с нас</h2>
+        <p className="mt-3 text-primary/70">Средна оценка 4.8 по рецензии от ателието.</p>
       </div>
       <div className="mt-10 grid gap-6 md:grid-cols-3">
         {testimonials.map((testimonial, index) => (
