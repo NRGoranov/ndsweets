@@ -59,17 +59,19 @@ export function FeaturedProductsSection({ products }: { products: Product[] }) {
             >
               <Card className="h-full">
                 <CardHeader className="space-y-4 p-0">
-                  <div className="relative h-48 w-full overflow-hidden rounded-3xl bg-cream-100 sm:h-64">
-                    <Image
-                      src={product.imageUrl}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      className="object-cover transition duration-500 hover:scale-105"
-                      quality={90}
-                      loading="lazy"
-                    />
-                  </div>
+                  <Link href={`/products/${product.slug}`} className="block">
+                    <div className="relative h-48 w-full overflow-hidden rounded-3xl bg-cream-100 sm:h-64">
+                      <Image
+                        src={product.imageUrl}
+                        alt={product.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                        className="object-cover transition duration-500 hover:scale-105"
+                        quality={90}
+                        loading="lazy"
+                      />
+                    </div>
+                  </Link>
                   <div className="px-4 pt-4 sm:px-6 sm:pt-6">
                     <CardTitle className="text-lg sm:text-xl">{product.name}</CardTitle>
                     <p className="mt-2 line-clamp-2 text-xs text-primary/70 sm:text-sm">
