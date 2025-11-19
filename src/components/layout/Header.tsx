@@ -45,13 +45,13 @@ export function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between sm:h-20">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="relative h-10 w-10">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="relative h-12 w-12 sm:h-14 sm:w-14">
             <Image
               src="/Asset%201.png"
               alt="ndsweets"
               fill
-              sizes="40px"
+              sizes="56px"
               className="object-contain"
               priority
             />
