@@ -176,10 +176,10 @@ export function CheckoutForm() {
       </div>
 
       <Button type="submit" size="lg" className="w-full" disabled={loading}>
-        {loading ? "Обработваме..." : "Продължи към плащане"}
+        {loading ? "Изпращаме..." : "Изпрати поръчка"}
       </Button>
       <p className="text-xs text-primary/60">
-        Плащанията се обработват от Stripe. В демо режим бутонът симулира успешна транзакция.
+        Плащането се извършва в брой при лично получаване в ателието. Натискането на бутона записва поръчката и нашият екип ще се свърже с вас.
       </p>
     </form>
   );

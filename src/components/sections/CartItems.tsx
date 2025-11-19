@@ -21,21 +21,32 @@ export function CartItems() {
 
   return (
     <div className="space-y-6">
-      {items.map((item) => (
-        <div
-          key={`${item.productId}-${item.variantLabel}`}
-          className="flex flex-col gap-4 rounded-3xl border border-primary/10 bg-white/90 p-4 md:flex-row md:items-center"
-        >
-          <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl bg-cream-100">
-            <Image
-              src={item.imageUrl}
-              alt={item.name}
-              fill
-              sizes="96px"
-              className="object-cover"
-              quality={85}
-            />
-          </div>
+      {items.map((item) => {
+        const params = new URLSearchParams();
+        if (item.variantId) params.set("variant", item.variantId);
+        if (item.flavourId) params.set("flavour", item.flavourId);
+        const query = params.toString();
+        const productHref = `/products/${item.slug}${query ? `?${query}` : ""}`;
+        const variantRef = item.variantId ?? item.variantLabel;
+
+        return (
+          <div
+            key={`${item.productId}-${item.variantLabel}-${item.flavourId ?? "default"}`}
+            className="flex flex-col gap-4 rounded-3xl border border-primary/10 bg-white/90 p-4 md:flex-row md:items-center"
+          >
+            <Link
+              href={productHref}
+              className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-2xl bg-cream-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+            >
+              <Image
+                src={item.imageUrl}
+                alt={item.name}
+                fill
+                sizes="96px"
+                className="object-cover transition-transform duration-300 hover:scale-105"
+                quality={85}
+              />
+            </Link>
           <div className="flex-1">
             <p className="font-display text-xl text-primary">{item.name}</p>
             <p className="text-sm text-primary/70">{item.variantLabel}</p>
@@ -49,7 +60,7 @@ export function CartItems() {
             <button
               className="h-8 w-8 rounded-full border border-primary/20"
               onClick={() =>
-                updateQuantity(item.productId, item.variantLabel, Math.max(1, item.quantity - 1))
+                updateQuantity(item.productId, variantRef, item.flavourId ?? null, Math.max(1, item.quantity - 1))
               }
               aria-label="Намали количеството"
             >
@@ -59,7 +70,7 @@ export function CartItems() {
             <button
               className="h-8 w-8 rounded-full border border-primary/20"
               onClick={() =>
-                updateQuantity(item.productId, item.variantLabel, item.quantity + 1)
+                updateQuantity(item.productId, variantRef, item.flavourId ?? null, item.quantity + 1)
               }
               aria-label="Увеличи количеството"
             >
@@ -72,13 +83,14 @@ export function CartItems() {
             </p>
             <button
               className="text-sm text-primary/60 underline"
-              onClick={() => removeItem(item.productId, item.variantLabel)}
+              onClick={() => removeItem(item.productId, variantRef, item.flavourId ?? null)}
             >
               Премахни
             </button>
           </div>
         </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

@@ -19,32 +19,20 @@ const sortOptions = [
   { label: "Цена: низходящо", value: "price-desc" },
 ];
 
-const EXCLUDED_CATEGORY_SLUG = "gift-vouchers";
-
 export function MenuFilters({ categories, products, initialCategorySlug }: Props) {
-  const normalizedInitialSlug =
-    initialCategorySlug && initialCategorySlug !== EXCLUDED_CATEGORY_SLUG
-      ? initialCategorySlug
-      : null;
-  const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(normalizedInitialSlug);
+  const [activeCategorySlug, setActiveCategorySlug] = useState<string | null>(
+    initialCategorySlug ?? null,
+  );
   const [sort, setSort] = useState(sortOptions[0].value);
   const [query, setQuery] = useState("");
 
-  const displayCategories = categories.filter(
-    (category) => category.slug !== EXCLUDED_CATEGORY_SLUG,
-  );
-  const voucherCategoryId =
-    categories.find((category) => category.slug === EXCLUDED_CATEGORY_SLUG)?.id ?? null;
-
   const activeCategoryId = useMemo(() => {
     if (!activeCategorySlug) return null;
-    return displayCategories.find((category) => category.slug === activeCategorySlug)?.id ?? null;
-  }, [activeCategorySlug, displayCategories]);
+    return categories.find((category) => category.slug === activeCategorySlug)?.id ?? null;
+  }, [activeCategorySlug, categories]);
 
   const filteredProducts = useMemo(() => {
-    let result = voucherCategoryId
-      ? products.filter((product) => product.categoryId !== voucherCategoryId)
-      : products;
+    let result = products;
     if (activeCategoryId) {
       result = result.filter((p) => p.categoryId === activeCategoryId);
     }
@@ -58,7 +46,7 @@ export function MenuFilters({ categories, products, initialCategorySlug }: Props
       result = [...result].sort((a, b) => b.basePrice - a.basePrice);
     }
     return result;
-  }, [activeCategoryId, products, query, sort, voucherCategoryId]);
+  }, [activeCategoryId, products, query, sort]);
 
   return (
     <section className="container mt-8">
@@ -71,7 +59,7 @@ export function MenuFilters({ categories, products, initialCategorySlug }: Props
             >
               Всичко
             </Button>
-            {displayCategories.map((category) => (
+            {categories.map((category) => (
               <Button
                 key={category.id}
                 variant={activeCategorySlug === category.slug ? "default" : "ghost"}

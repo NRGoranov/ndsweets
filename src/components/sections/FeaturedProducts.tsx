@@ -16,7 +16,7 @@ export function FeaturedProductsSection({ products }: { products: Product[] }) {
   const [addedItems, setAddedItems] = useState<Set<string>>(new Set());
 
   const handleAddToCart = (product: Product) => {
-    addItem(product, product.variants[0], [], 1);
+    addItem(product, product.variants[0], [], 1, { imageUrl: product.imageUrl });
     setAddedItems((prev) => new Set(prev).add(product.id));
     toast.success("Добавено в количката!", {
       description: `${product.name} очаква финалната ви поръчка.`,

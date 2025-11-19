@@ -5,9 +5,10 @@ import { ProductCard } from "@/components/sections/ProductCard";
 
 type Props = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ variant?: string; flavour?: string }>;
 };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   return {
@@ -15,8 +16,8 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default async function ProductPage({ params }: Props) {
-  const { slug } = await params;
+export default async function ProductPage({ params, searchParams }: Props) {
+  const [{ slug }, query] = await Promise.all([params, searchParams]);
   const product = await getProductBySlug(slug);
   if (!product) notFound();
   const products = await getProducts();
@@ -24,7 +25,11 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <div className="container pb-20">
-      <ProductConfigurator product={product} />
+      <ProductConfigurator
+        product={product}
+        initialVariantId={query.variant}
+        initialFlavourId={query.flavour}
+      />
       <div className="mt-20 space-y-6">
         <h2 className="font-display text-3xl text-primary">Комбинирай с още</h2>
         <div className="grid gap-6 md:grid-cols-3">

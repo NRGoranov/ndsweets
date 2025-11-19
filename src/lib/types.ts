@@ -12,6 +12,13 @@ export type ProductVariant = {
   price: number;
 };
 
+export type ProductFlavour = {
+  id: string;
+  name: string;
+  description: string;
+  images: string[];
+};
+
 export type Product = {
   id: string;
   name: string;
@@ -22,7 +29,7 @@ export type Product = {
   imageUrl: string;
   isFeatured?: boolean;
   variants: ProductVariant[];
-  fillings: string[];
+  flavours: ProductFlavour[];
   extras: Extra[];
 };
 
@@ -60,6 +67,8 @@ export type CartItem = {
   slug: string;
   name: string;
   variantLabel: string;
+  variantId: string;
+  flavourId?: string;
   quantity: number;
   price: number;
   extras: Extra[];

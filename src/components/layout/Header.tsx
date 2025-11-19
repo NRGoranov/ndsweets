@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, ShoppingBag } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -45,18 +44,10 @@ export function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between sm:h-20">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="relative h-12 w-12 sm:h-14 sm:w-14">
-            <Image
-              src="/Asset%201.png"
-              alt="ndsweets"
-              fill
-              sizes="56px"
-              className="object-contain"
-              priority
-            />
-          </div>
-          <span className="sr-only">ndsweets</span>
+        <Link href="/" className="flex items-center">
+          <span className="font-display text-2xl uppercase tracking-[0.45em] text-primary sm:text-3xl">
+            ND&nbsp;SWEETS
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-4 text-sm font-medium text-primary/80 md:gap-6 lg:flex">

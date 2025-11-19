@@ -19,7 +19,7 @@ export default async function MenuPage({
         <p className="text-sm uppercase tracking-[0.4em] text-primary/50">Меню</p>
         <h1 className="font-display text-4xl text-primary">Подбрани десерти и торти</h1>
         <p className="text-primary/70">
-          Филтрирай по категория, подреди по цена или открий любимия си вкус.
+          Открийте стандартни, премиум и бенто торти, дребни сладки и кетъринг сетове. Получаването е на място в ателието – работим по старта на собствена доставка.
         </p>
       </div>
       <MenuFilters

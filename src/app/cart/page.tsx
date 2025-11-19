@@ -21,7 +21,7 @@ export default function CartPage() {
         <div className="space-y-4">
           <OrderSummary />
           <Button asChild disabled={!hasItems} className="w-full">
-            <Link href="/checkout">Продължи към плащане</Link>
+            <Link href="/checkout">Завърши поръчката</Link>
           </Button>
         </div>
       </div>

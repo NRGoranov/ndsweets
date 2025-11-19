@@ -1,32 +1,59 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import type { Product, ProductVariant, Extra } from "@/lib/types";
+import type { Product, ProductVariant } from "@/lib/types";
 import { useCartStore } from "@/hooks/useCartStore";
 
-export function ProductConfigurator({ product }: { product: Product }) {
+type ProductConfiguratorProps = {
+  product: Product;
+  initialVariantId?: string;
+  initialFlavourId?: string;
+};
+
+export function ProductConfigurator({ product, initialVariantId, initialFlavourId }: ProductConfiguratorProps) {
   const addItem = useCartStore((state) => state.addItem);
-  const [variant, setVariant] = useState<ProductVariant>(product.variants[0]);
-  const [selectedExtras, setSelectedExtras] = useState<Extra[]>([]);
+  const resolvedVariant = useMemo(() => {
+    return product.variants.find((v) => v.id === initialVariantId) ?? product.variants[0];
+  }, [product.variants, initialVariantId]);
+  const resolvedFlavour = useMemo(() => {
+    if (!product.flavours.length) return null;
+    return product.flavours.find((flavourOption) => flavourOption.id === initialFlavourId) ?? product.flavours[0];
+  }, [product.flavours, initialFlavourId]);
+
+  const [variant, setVariant] = useState<ProductVariant>(resolvedVariant);
   const [quantity, setQuantity] = useState(1);
+  const [flavour, setFlavour] = useState(resolvedFlavour);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const toggleExtra = (extra: Extra) => {
-    setSelectedExtras((prev) =>
-      prev.find((e) => e.id === extra.id) ? prev.filter((e) => e.id !== extra.id) : [...prev, extra],
-    );
-  };
+  useEffect(() => {
+    setVariant(resolvedVariant);
+  }, [resolvedVariant]);
 
-  const total =
-    variant.price * quantity +
-    selectedExtras.reduce((sum, extra) => sum + extra.price * quantity, 0);
+  useEffect(() => {
+    setFlavour(resolvedFlavour);
+  }, [resolvedFlavour]);
+
+  const galleryImages = useMemo(() => {
+    if (flavour?.images?.length) return flavour.images;
+    return [product.imageUrl];
+  }, [flavour, product.imageUrl]);
+
+  const total = variant.price * quantity;
 
   const handleAdd = () => {
-    addItem(product, variant, selectedExtras, quantity);
+    const selectedImage = galleryImages[activeImageIndex] ?? product.imageUrl;
+    const selectionVariant = flavour
+      ? { ...variant, label: `${variant.label} · ${flavour.name}` }
+      : variant;
+    addItem(product, selectionVariant, [], quantity, {
+      imageUrl: selectedImage,
+      flavourId: flavour?.id,
+    });
     toast.success("Добавено в количката!", {
-      description: `${quantity} × ${product.name} (${variant.label}) бяха добавени към поръчката`,
+      description: `${quantity} × ${product.name} (${selectionVariant.label}) бяха добавени към поръчката`,
       duration: 3000,
     });
   };
@@ -36,7 +63,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
       <div className="space-y-3 sm:space-y-4">
         <div className="relative h-64 overflow-hidden rounded-[2rem] bg-cream-100 sm:h-[500px]">
           <Image
-            src={product.imageUrl}
+            src={galleryImages[activeImageIndex]}
             alt={product.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
@@ -46,21 +73,25 @@ export function ProductConfigurator({ product }: { product: Product }) {
           />
         </div>
         <div className="grid grid-cols-3 gap-2 sm:gap-4">
-          {[product.imageUrl, product.imageUrl, product.imageUrl].map((src, index) => (
-            <div
+          {galleryImages.map((src, index) => (
+            <button
               key={index}
-              className="relative h-20 overflow-hidden rounded-2xl border border-primary/10 bg-cream-100 sm:h-32"
+              type="button"
+              onClick={() => setActiveImageIndex(index)}
+              className={`relative h-20 overflow-hidden rounded-2xl border bg-cream-100 sm:h-32 ${
+                activeImageIndex === index ? "border-primary" : "border-primary/10"
+              }`}
             >
               <Image
                 src={src}
                 alt={`${product.name} изглед ${index + 1}`}
                 fill
                 sizes="(max-width: 640px) 33vw, (max-width: 1024px) 33vw, 16vw"
-                className="object-cover transition-opacity hover:opacity-80 cursor-pointer"
+                className="object-cover transition-opacity hover:opacity-80"
                 quality={85}
                 loading="lazy"
               />
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -90,43 +121,36 @@ export function ProductConfigurator({ product }: { product: Product }) {
           </div>
         </div>
 
-        {product.fillings.length > 0 && (
+        {product.flavours.length > 0 && (
           <div className="mt-4 sm:mt-6">
-            <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">Вкусов профил</p>
-            <div className="mt-2 flex flex-wrap gap-2 text-xs text-primary/70 sm:mt-3 sm:text-sm">
-              {product.fillings.map((filling) => (
-                <span key={filling} className="rounded-full bg-primary/10 px-4 py-2">
-                  {filling}
-                </span>
+            <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">Избор на вкус</p>
+            <div className="mt-2 grid gap-2 sm:mt-3 sm:gap-3">
+              {product.flavours.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => {
+                    setFlavour(option);
+                    setActiveImageIndex(0);
+                  }}
+                  className={`rounded-2xl border px-4 py-3 text-left ${
+                    flavour?.id === option.id
+                      ? "border-primary bg-primary/10 text-primary"
+                      : "border-primary/20 text-primary/70"
+                  }`}
+                >
+                  <p className="font-semibold">{option.name}</p>
+                  <p className="text-sm text-primary/60">{option.description}</p>
+                </button>
               ))}
             </div>
           </div>
         )}
 
-        <div className="mt-4 sm:mt-6">
-          <p className="text-xs uppercase tracking-[0.2em] text-primary/60 sm:text-sm">Допълнения</p>
-          <div className="mt-2 grid gap-2 sm:mt-3 sm:gap-3">
-            {product.extras.map((extra) => {
-              const active = selectedExtras.some((e) => e.id === extra.id);
-              return (
-                <button
-                  key={extra.id}
-                  type="button"
-                  onClick={() => toggleExtra(extra)}
-                  className={`flex items-center justify-between rounded-2xl border px-4 py-3 text-left ${
-                    active ? "border-primary bg-primary/10 text-primary" : "border-primary/20 text-primary/70"
-                  }`}
-                >
-                  <span>
-                    <p className="font-semibold">{extra.name}</p>
-                    {extra.description && <p className="text-sm text-primary/60">{extra.description}</p>}
-                  </span>
-                  <span>+{extra.price.toFixed(2)} лв.</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        {/*
+        Допълненията са изключени към момента по изискване на клиента. Когато тази секция се върне,
+        тук ще се визуализират бутоните за избор.
+        */}
 
         <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-primary/20 p-3 sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:p-4">
           <div className="flex items-center justify-between sm:justify-start sm:gap-3">
@@ -159,7 +183,7 @@ export function ProductConfigurator({ product }: { product: Product }) {
         </div>
 
         <Button className="mt-4 w-full sm:mt-6" size="lg" onClick={handleAdd}>
-          Добави в количката
+          Изпрати поръчка
         </Button>
       </div>
     </div>

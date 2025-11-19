@@ -31,16 +31,16 @@ export function HeroSection() {
           <p className="text-sm uppercase tracking-[0.3em] text-rose-100">
             Ателиe за сладкарство в София
           </p>
-          <h1 className="mt-6 font-display text-4xl leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
-            Ръчно изработени десерти за най-сладките ви моменти
+          <h1 className="mt-6 font-display text-4xl leading-[1.05] tracking-[0.02em] sm:text-5xl lg:text-6xl">
+            Стандартни и премиум торти, бенто десерти, дребни сладки и кетъринг сетове
           </h1>
-          <p className="mt-6 max-w-xl text-lg text-rose-100/90">
-            Бутикови десерти, вдъхновени от европейските традиции, създадени с българска душевност и
-            персонално отношение към всяка поръчка.
+          <p className="mt-6 max-w-2xl text-lg text-rose-100/90">
+            Работим ръчно с подбрани български продукти. В момента приемаме поръчки за лично
+            получаване от ателието, а новата ни услуга за доставка е в разработка.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button size="lg" asChild>
-              <Link href="/menu">Виж менюто</Link>
+              <Link href="/menu">Виж менютата</Link>
             </Button>
             <Button size="lg" variant="secondary" asChild>
               <Link href="/custom-cakes">Създай торта по поръчка</Link>
