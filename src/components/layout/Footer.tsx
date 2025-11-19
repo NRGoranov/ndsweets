@@ -70,15 +70,18 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-2 text-sm text-primary/70">
-            <Link href="tel:+359000000" className="flex items-center gap-2 hover:text-primary">
+            <Link href="tel:+359885721860" className="flex items-center gap-2 hover:text-primary">
               <Phone className="h-4 w-4" />
-              +359 000 000
+              +359 88 572 18 60
             </Link>
             <Link href="mailto:orders@ndsweets.com" className="flex items-center gap-2 hover:text-primary">
               <Mail className="h-4 w-4" />
               orders@ndsweets.com
             </Link>
-            <p className="mt-4">© {new Date().getFullYear()} ndsweets. Всички права запазени.</p>
+            <p className="mt-4 text-xs uppercase tracking-[0.3em] text-primary/60">
+              ndsweets <span className="ml-2 text-[11px] normal-case">by <a href="https://www.nrgtrw.com" target="_blank" rel="noreferrer" className="underline">Nadya Dimitrova</a></span>
+            </p>
+            <p className="text-xs text-primary/60">© {new Date().getFullYear()} ndsweets. Всички права запазени. <a href="https://www.nrgtrw.com" target="_blank" rel="noreferrer" className="underline">nrgtrw.com</a></p>
           </div>
           <p className="mt-6 text-center text-xs text-primary/50 md:text-left">
             Създаден от{" "}
