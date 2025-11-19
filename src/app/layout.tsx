@@ -46,8 +46,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             className:
               "rounded-2xl border border-primary/10 bg-white/95 px-6 py-4 text-primary shadow-xl backdrop-blur",
             descriptionClassName: "text-primary/70",
-            actionButtonClassName: "bg-primary text-white hover:bg-primary/90",
-            cancelButtonClassName: "text-primary/60 hover:text-primary",
             style: {
               borderRadius: "1.5rem",
             },
