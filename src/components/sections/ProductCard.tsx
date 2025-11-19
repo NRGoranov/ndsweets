@@ -15,7 +15,16 @@ export function ProductCard({ product }: { product: Product }) {
   const [justAdded, setJustAdded] = useState(false);
 
   const handleAddToCart = () => {
-    addItem(product, product.variants[0], [], 1, { imageUrl: product.imageUrl });
+    const defaultVariant = product.variants[0];
+    const defaultFlavour = product.flavours?.[0];
+    const selectionVariant = defaultFlavour
+      ? { ...defaultVariant, label: `${defaultVariant.label} · ${defaultFlavour.name}` }
+      : defaultVariant;
+    const flavourImage = defaultFlavour?.images?.[0];
+    addItem(product, selectionVariant, [], 1, {
+      imageUrl: flavourImage ?? product.imageUrl,
+      flavourId: defaultFlavour?.id,
+    });
     setJustAdded(true);
     toast.success("Добавено в количката!", {
       description: `${product.name} очаква финалната ви поръчка.`,

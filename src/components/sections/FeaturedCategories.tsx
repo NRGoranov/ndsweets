@@ -7,15 +7,12 @@ import { Button } from "@/components/ui/button";
 import type { Category } from "@/lib/types";
 
 const categoryImages: Record<string, string> = {
-  cakes: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80",
-  "bento-cakes":
-    "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=80",
-  macarons:
-    "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=80",
-  "other-desserts":
-    "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80",
-  "gift-vouchers":
-    "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=900&q=80",
+  "standard-cakes": "/sweets gallery/birthday_cake (1).jpg",
+  "premium-cakes": "/sweets gallery/choco_cake (1).jpg",
+  "bento-cakes": "/sweets gallery/purple_cake (1).jpg",
+  "petit-fours": "/sweets gallery/macaroons.jpg",
+  catering: "/sweets gallery/donuts (1).jpg",
+  others: "/sweets gallery/pie (1).jpg",
 };
 
 const EXCLUDED_CATEGORY_SLUG = "gift-vouchers";
@@ -46,7 +43,7 @@ export function FeaturedCategoriesSection({ categories }: { categories: Category
           >
             <div className="relative h-40 w-full overflow-hidden rounded-2xl">
               <Image
-                src={categoryImages[category.slug] || categoryImages.cakes}
+                src={categoryImages[category.slug] || categoryImages["standard-cakes"]}
                 alt={category.name}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"

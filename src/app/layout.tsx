@@ -34,11 +34,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${display.variable} ${sans.variable}`} data-scroll-behavior="smooth">
       <body className="bg-cream-50 antialiased text-foreground">
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="min-h-screen pt-20 sm:pt-24">{children}</main>
         <Footer />
         <EmailPopup />
         <ScrollToTop />
-        <Toaster position="top-center" richColors />
+        <Toaster
+          position="top-center"
+          richColors={false}
+          closeButton
+          toastOptions={{
+            className:
+              "rounded-2xl border border-primary/10 bg-white/95 px-6 py-4 text-primary shadow-xl backdrop-blur",
+            descriptionClassName: "text-primary/70",
+            actionButtonClassName: "bg-primary text-white hover:bg-primary/90",
+            cancelButtonClassName: "text-primary/60 hover:text-primary",
+            style: {
+              borderRadius: "1.5rem",
+            },
+            success: {
+              className:
+                "rounded-2xl border border-primary/15 bg-cream-50/95 px-6 py-4 text-primary shadow-xl",
+              descriptionClassName: "text-primary/70",
+            },
+          }}
+        />
       </body>
     </html>
   );

@@ -11,11 +11,11 @@ export function HeroSection() {
     <section className="relative flex min-h-[90vh] flex-col justify-center overflow-hidden rounded-[2.5rem] bg-[#f8efe4] px-6 py-16 md:px-16">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1500&q=80"
+          src="/sweets gallery/choco_brownie (1).jpg"
           alt="Витрина с ръчно изработени десерти"
           fill
           sizes="100vw"
-          className="object-cover opacity-60"
+          className="object-cover opacity-70"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1f0f09]/85 via-[#421e13]/60 to-[#f8efe4]/40" />

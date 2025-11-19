@@ -46,23 +46,51 @@ const categories: Category[] = [
 ];
 
 const dessertImages = {
-  rosePetalCake: "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=1200&q=90",
-  berryMousse: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=1200&q=90",
-  chocolateLayers: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=90",
-  blushCake: "https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?auto=format&fit=crop&w=1200&q=90",
-  cupcakeGarden: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1200&q=90",
-  dessertTrio: "https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?auto=format&fit=crop&w=1200&q=90",
-  citrusBars: "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&w=1200&q=90",
-  pistachioCake: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=90",
-  macaronsPastel: "https://images.unsplash.com/photo-1499638673689-79a0b5115d87?auto=format&fit=crop&w=1200&q=90",
-  eclairSet: "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1200&q=90",
-  tiramisuClassic: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=1200&q=90",
-  cateringDisplay: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=90",
-  brunchTable: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=1200&q=90",
-  giftCrate: "https://images.unsplash.com/photo-1481391032119-d89fee407e44?auto=format&fit=crop&w=1200&q=90",
-  petitFours: "https://images.unsplash.com/photo-1432139509613-5c4255815697?auto=format&fit=crop&w=1200&q=90",
-  chocolateSlab: "https://images.unsplash.com/photo-1505576391880-b3f9d713dc05?auto=format&fit=crop&w=1200&q=90",
-  miniDessertDisplay: "https://images.unsplash.com/photo-1447078806655-40579c2520d6?auto=format&fit=crop&w=1200&q=90",
+  birthdayCake: [
+    "/sweets gallery/birthday_cake (1).jpg",
+    "/sweets gallery/birthday_cake (2).jpg",
+    "/sweets gallery/birthday_cake (3).jpg",
+  ],
+  chocoCake: [
+    "/sweets gallery/choco_cake (1).jpg",
+    "/sweets gallery/choco_cake (2).jpg",
+    "/sweets gallery/choco_cake (3).jpg",
+  ],
+  biscottiCake: [
+    "/sweets gallery/bishcoti_cake (1).jpg",
+    "/sweets gallery/bishcoti_cake (2).jpg",
+    "/sweets gallery/bishcoti_cake (3).jpg",
+  ],
+  chocoBrownie: [
+    "/sweets gallery/choco_brownie (1).jpg",
+    "/sweets gallery/choco_brownie (2).jpg",
+    "/sweets gallery/choco_brownie (3).jpg",
+  ],
+  donuts: [
+    "/sweets gallery/donuts (1).jpg",
+    "/sweets gallery/donuts (2).jpg",
+    "/sweets gallery/donuts (3).jpg",
+  ],
+  macaroons: [
+    "/sweets gallery/macaroons.jpg",
+    "/sweets gallery/macaroons (2).jpg",
+    "/sweets gallery/macaroons(3).jpg",
+  ],
+  pies: [
+    "/sweets gallery/pie (1).jpg",
+    "/sweets gallery/pie (2).jpg",
+    "/sweets gallery/pie (3).jpg",
+  ],
+  purpleCake: [
+    "/sweets gallery/purple_cake (1).jpg",
+    "/sweets gallery/purple_cake (2).jpg",
+    "/sweets gallery/purple_cake (3).jpg",
+  ],
+  weddingCake: [
+    "/sweets gallery/wedding_cake (1).jpg",
+    "/sweets gallery/wedding_cake (2).jpg",
+    "/sweets gallery/wedding_cake (3).jpg",
+  ],
 } as const;
 
 const baseExtras = [
@@ -74,14 +102,13 @@ const baseExtras = [
 const products: Product[] = [
   {
     id: "prod-rose",
-    name: "Торта Роза и шамфъстък",
+    name: "Торта „Празничен букет“",
     slug: "rosewater-pistachio-cake",
     description:
-      "Подписов пандишпан с вода от рози, шамфъстъково пралине и маскарпоне крем.",
+      "Висока ванилова торта със сочни блатове, френски маслен крем и флорална декорация.",
     basePrice: 120,
     categoryId: "cat-standard",
-    imageUrl:
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=90",
+    imageUrl: dessertImages.birthdayCake[0],
     isFeatured: true,
     variants: [
       { id: "var-rose-6", label: "6 парчета", price: 120 },
@@ -91,35 +118,34 @@ const products: Product[] = [
     flavours: [
       {
         id: "fl-rose-classic",
-        name: "Розов сатен",
-        description: "Крем от розова вода, шамфъстък и маскарпоне.",
-        images: [dessertImages.rosePetalCake, dessertImages.blushCake, dessertImages.cupcakeGarden],
+        name: "Ванилия и роза",
+        description: "Ванилов крем с нотка розова вода и карамелизиран шамфъстък.",
+        images: [dessertImages.birthdayCake[0], dessertImages.birthdayCake[1], dessertImages.birthdayCake[2]],
       },
       {
         id: "fl-rose-berry",
-        name: "Розов мус с малини",
-        description: "Малинов конфитюр и розов мус с ванилов крем.",
-        images: [dessertImages.berryMousse, dessertImages.rosePetalCake, dessertImages.dessertTrio],
+        name: "Горски плодове",
+        description: "Малинов конфитюр, кадифен крем и свежи плодове.",
+        images: [dessertImages.birthdayCake[1], dessertImages.birthdayCake[2], dessertImages.birthdayCake[0]],
       },
       {
         id: "fl-rose-citrus",
-        name: "Розов цитрус",
-        description: "Блосъм крем с портокал и лимонова кора.",
-        images: [dessertImages.citrusBars, dessertImages.rosePetalCake, dessertImages.cupcakeGarden],
+        name: "Цитрус и полски цветя",
+        description: "Лимонов мус, портокалова кора и ядлива флорална декорация.",
+        images: [dessertImages.birthdayCake[2], dessertImages.birthdayCake[0], dessertImages.birthdayCake[1]],
       },
     ],
     extras: baseExtras,
   },
   {
     id: "prod-chocolate",
-    name: "Шоколадово вуалé",
+    name: "Торта „Нуар Велюр“",
     slug: "chocolate-velvet-layer-cake",
     description:
-      "Богати пластове тъмен шоколад с белгийско какао ганаш и ванилов маслен крем.",
+      "Троен шоколадов блат с белгийско какао, кремю и огледална глазура.",
     basePrice: 135,
     categoryId: "cat-premium",
-    imageUrl:
-      "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=1200&q=90",
+    imageUrl: dessertImages.chocoCake[0],
     isFeatured: true,
     variants: [
       { id: "var-choc-6", label: "6 парчета", price: 135 },
@@ -129,35 +155,34 @@ const products: Product[] = [
     flavours: [
       {
         id: "fl-choc-noir",
-        name: "Noir 70%",
-        description: "Тъмен ганаш с белгийско какао и ром.",
-        images: [dessertImages.chocolateLayers, dessertImages.chocolateSlab, dessertImages.blushCake],
+        name: "Нуар 70%",
+        description: "Интензивен ганаш с ром и печен какаов нибс.",
+        images: [dessertImages.chocoCake[0], dessertImages.chocoCake[1], dessertImages.chocoCake[2]],
       },
       {
         id: "fl-choc-raspberry",
-        name: "Шоколад и малина",
-        description: "Шоколадови блатове с малинов мус и пюре.",
-        images: [dessertImages.berryMousse, dessertImages.rosePetalCake, dessertImages.dessertTrio],
+        name: "Малина и какао",
+        description: "Шоколадови блатове, малинов крем и розов шоколад.",
+        images: [dessertImages.chocoCake[1], dessertImages.chocoCake[2], dessertImages.chocoCake[0]],
       },
       {
         id: "fl-choc-hazelnut",
-        name: "Шоколадов пралин",
-        description: "Лешников дакоаз, карамел и ганаш.",
-        images: [dessertImages.cupcakeGarden, dessertImages.chocolateSlab, dessertImages.pistachioCake],
+        name: "Пралине и карамел",
+        description: "Лешников дакоаз, карамелен сос и млечен шоколад.",
+        images: [dessertImages.chocoCake[2], dessertImages.chocoCake[0], dessertImages.chocoCake[1]],
       },
     ],
     extras: baseExtras,
   },
   {
     id: "prod-bento",
-    name: "Перлено бенто",
+    name: "Бенто „Лавандулен ритуал“",
     slug: "pearl-bento-cake",
     description:
-      "Мини торта с ванилов мус, пухкав блат и кадифено какаово покритие.",
+      "Мини торта в кутия с кадифена глазура, подходяща за подарък или интимен празник.",
     basePrice: 48,
     categoryId: "cat-bento",
-    imageUrl:
-      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1200&q=90",
+    imageUrl: dessertImages.purpleCake[0],
     isFeatured: true,
     variants: [
       { id: "var-bento-1", label: "Единично (10 см)", price: 48 },
@@ -167,35 +192,34 @@ const products: Product[] = [
     flavours: [
       {
         id: "fl-bento-vanilla",
-        name: "Ванилия и карамел",
-        description: "Ванилов мус, карамел и бял шоколад.",
-        images: [dessertImages.rosePetalCake, dessertImages.cupcakeGarden, dessertImages.berryMousse],
+        name: "Лавандула и ванилия",
+        description: "Лавандулов крем, ванилов блат и бял шоколад.",
+        images: [dessertImages.purpleCake[0], dessertImages.purpleCake[1], dessertImages.purpleCake[2]],
       },
       {
         id: "fl-bento-hazelnut",
-        name: "Лешников пралин",
-        description: "Лешников крем, кафе и млечен шоколад.",
-        images: [dessertImages.chocolateSlab, dessertImages.chocolateLayers, dessertImages.pistachioCake],
+        name: "Орехов пралин",
+        description: "Тъмен блат, лешников крем и пурпурна глазура.",
+        images: [dessertImages.purpleCake[1], dessertImages.purpleCake[2], dessertImages.purpleCake[0]],
       },
       {
         id: "fl-bento-coconut",
-        name: "Кокосов облак",
-        description: "Кокосов мус, лайм и бял шоколад.",
-        images: [dessertImages.dessertTrio, dessertImages.citrusBars, dessertImages.berryMousse],
+        name: "Боровинка и кокос",
+        description: "Кокосов мус, конфитюр от боровинки и ванилов крем.",
+        images: [dessertImages.purpleCake[2], dessertImages.purpleCake[0], dessertImages.purpleCake[1]],
       },
     ],
     extras: baseExtras,
   },
   {
     id: "prod-macarons",
-    name: "Макарон Галерия",
+    name: "Макарон колекция „Пастел“",
     slug: "macaron-gallery",
     description:
-      "Кутия с 12 сезонни макарона – от мадагаскарска ванилия до юзу с черен сусам.",
+      "Асортимент от френски макарони с ръчно боядисани шелфове и кремове в сезонни вкусове.",
     basePrice: 42,
     categoryId: "cat-sweets",
-    imageUrl:
-      "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=1200&q=90",
+    imageUrl: dessertImages.macaroons[0],
     variants: [
       { id: "var-mac-12", label: "12 броя", price: 42 },
       { id: "var-mac-24", label: "24 броя", price: 78 },
@@ -204,21 +228,21 @@ const products: Product[] = [
     flavours: [
       {
         id: "fl-macaron-floral",
-        name: "Флорална серия",
+        name: "Флорален сет",
         description: "Роза, лавандула и бъз.",
-        images: [dessertImages.macaronsPastel, dessertImages.rosePetalCake, dessertImages.dessertTrio],
+        images: [dessertImages.macaroons[0], dessertImages.macaroons[1], dessertImages.macaroons[2]],
       },
       {
         id: "fl-macaron-classic",
-        name: "Класически вкус",
+        name: "Класика",
         description: "Ванилия, шоколад и солен карамел.",
-        images: [dessertImages.cupcakeGarden, dessertImages.chocolateSlab, dessertImages.pistachioCake],
+        images: [dessertImages.macaroons[1], dessertImages.macaroons[2], dessertImages.macaroons[0]],
       },
       {
         id: "fl-macaron-citrus",
         name: "Цитрус и подправки",
         description: "Юзу, лайм и кардамон.",
-        images: [dessertImages.citrusBars, dessertImages.berryMousse, dessertImages.dessertTrio],
+        images: [dessertImages.macaroons[2], dessertImages.macaroons[0], dessertImages.macaroons[1]],
       },
     ],
     extras: [
@@ -228,13 +252,13 @@ const products: Product[] = [
   },
   {
     id: "prod-catering-mini",
-    name: "Мини десерт сет",
+    name: "Мини десерт сет „Гала“",
     slug: "mini-dessert-catering",
     description:
-      "48 хапки – тарталети, мини-чийзкейк, плодови тарти и шоколадови кубчета.",
+      "48 гурме хапки – донът филета, тарталети и брауни кубчета, подредени за коктейлно сервиране.",
     basePrice: 185,
     categoryId: "cat-catering",
-    imageUrl: dessertImages.miniDessertDisplay,
+    imageUrl: dessertImages.donuts[0],
     variants: [
       { id: "var-mini-48", label: "48 броя", price: 185 },
       { id: "var-mini-96", label: "96 броя", price: 340 },
@@ -244,20 +268,20 @@ const products: Product[] = [
       {
         id: "fl-mini-classic",
         name: "Класически сет",
-        description: "Тарталети с крем, шоколадови кубчета и мини-чийзкейк.",
-        images: [dessertImages.cateringDisplay, dessertImages.petitFours, dessertImages.cupcakeGarden],
+        description: "Ванилови тарталети, пурпурни мини тортички и глазирани донъти.",
+        images: [dessertImages.donuts[0], dessertImages.donuts[1], dessertImages.donuts[2]],
       },
       {
         id: "fl-mini-fruit",
-        name: "Флора и плод",
-        description: "Цитрусови тарталети, панакота и плодови бискоти.",
-        images: [dessertImages.dessertTrio, dessertImages.berryMousse, dessertImages.citrusBars],
+        name: "Бискоти и плод",
+        description: "Бишкоти с мус, плодови тарталети и мини пайове.",
+        images: [dessertImages.biscottiCake[0], dessertImages.biscottiCake[1], dessertImages.pies[0]],
       },
       {
         id: "fl-mini-chocolate",
         name: "Шоколадова линия",
-        description: "Троен шоколад, солен карамел и пралине.",
-        images: [dessertImages.chocolateSlab, dessertImages.cupcakeGarden, dessertImages.chocolateLayers],
+        description: "Брауни кубчета, шоколадови кръгчета и карамелизирани ядки.",
+        images: [dessertImages.chocoBrownie[0], dessertImages.chocoBrownie[1], dessertImages.chocoBrownie[2]],
       },
     ],
     extras: [
@@ -267,14 +291,13 @@ const products: Product[] = [
   },
   {
     id: "prod-seasonal",
-    name: "Сезонна подаръчна кутия",
+    name: "Сезонна кутия „Ателие“",
     slug: "seasonal-gift-crate",
     description:
-      "Комбинация от бискоти, карамелизиран орех, мини мадлени и домашно сладко.",
+      "Авторска селекция от пайове, брауни и мини тортички, подбрани спрямо сезона.",
     basePrice: 72,
     categoryId: "cat-other",
-    imageUrl:
-      "https://images.unsplash.com/photo-1481391032119-d89fee407e44?auto=format&fit=crop&w=1200&q=90",
+    imageUrl: dessertImages.pies[0],
     variants: [
       { id: "var-gift-1", label: "Редовна", price: 72 },
       { id: "var-gift-2", label: "Разширена", price: 110 },
@@ -284,20 +307,20 @@ const products: Product[] = [
       {
         id: "fl-seasonal-winter",
         name: "Зимна селекция",
-        description: "Канела, карамел, лешник и мандарина.",
-        images: [dessertImages.giftCrate, dessertImages.dessertTrio, dessertImages.berryMousse],
+        description: "Пай с карамел, брауни с лешник и мини торта с бял шоколад.",
+        images: [dessertImages.pies[0], dessertImages.chocoBrownie[0], dessertImages.weddingCake[0]],
       },
       {
         id: "fl-seasonal-spring",
         name: "Пролетна градина",
-        description: "Бадемови мадлени, лимон и конфитюр от роза.",
-        images: [dessertImages.rosePetalCake, dessertImages.citrusBars, dessertImages.cupcakeGarden],
+        description: "Цитрусов пай, бискоти с крем и лилава мини торта.",
+        images: [dessertImages.pies[1], dessertImages.biscottiCake[0], dessertImages.purpleCake[0]],
       },
       {
         id: "fl-seasonal-summer",
         name: "Лятна палитра",
-        description: "Тропически бискоти, ананас и маракуя.",
-        images: [dessertImages.dessertTrio, dessertImages.berryMousse, dessertImages.citrusBars],
+        description: "Тропически тарт, донът с плодове и сватбена мини тортичка.",
+        images: [dessertImages.pies[2], dessertImages.donuts[2], dessertImages.weddingCake[2]],
       },
     ],
     extras: [

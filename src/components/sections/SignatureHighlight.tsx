@@ -15,7 +15,7 @@ export function SignatureHighlight() {
         className="relative h-80 overflow-hidden rounded-[2rem]"
       >
         <Image
-          src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&w=900&q=80"
+          src="/sweets gallery/purple_cake (2).jpg"
           alt="Подписова торта с елегантна декорация"
           fill
           sizes="(max-width: 768px) 100vw, 50vw"

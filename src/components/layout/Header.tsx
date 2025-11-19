@@ -37,10 +37,10 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
+        "fixed inset-x-0 top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-primary/10 bg-white/95 backdrop-blur-xl shadow-sm"
-          : "border-b border-primary/5 bg-cream-50/95 backdrop-blur-md",
+          ? "border-b border-primary/10 bg-white/95 shadow-lg backdrop-blur-xl"
+          : "border-b border-transparent bg-cream-50/90 backdrop-blur-md",
       )}
     >
       <div className="container flex h-16 items-center justify-between sm:h-20">
