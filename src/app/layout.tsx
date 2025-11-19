@@ -49,11 +49,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             style: {
               borderRadius: "1.5rem",
             },
-            success: {
-              className:
-                "rounded-2xl border border-primary/15 bg-cream-50/95 px-6 py-4 text-primary shadow-xl",
-              descriptionClassName: "text-primary/70",
-            },
           }}
         />
       </body>
