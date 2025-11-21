@@ -47,7 +47,7 @@ export function EmailPopup() {
     }
 
     toast.success("Благодарим за доверието!", {
-      description: "Получавате 15% отстъпка за първа поръчка и безплатен достъп до нашия бюлетин.",
+      description: "Получавате 5% отстъпка за първа поръчка и безплатен достъп до нашия бюлетин.",
       duration: 5000,
     });
 
@@ -80,7 +80,7 @@ export function EmailPopup() {
             Добре дошли в ndsweets!
           </h2>
           <p className="mt-3 text-base text-primary/70 sm:text-lg">
-            Абонирайте се и получите <span className="font-semibold text-primary">15% отстъпка</span> за първа поръчка.
+            Абонирайте се и получите <span className="font-semibold text-primary">5% отстъпка</span> за първа поръчка.
           </p>
           <p className="mt-1 text-xs text-primary/50 sm:text-sm">
             Ще изпращаме рецепти, вдъхновения и ранни покани – без такса.
@@ -101,7 +101,7 @@ export function EmailPopup() {
                 className="flex-1"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Абонирам..." : "Вземи 15%"}
+                {isSubmitting ? "Абонирам..." : "Вземи 5%"}
               </Button>
               <Button
                 type="button"
